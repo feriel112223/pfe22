@@ -1,0 +1,270 @@
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">Détails du demande</h6>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formDemande" >
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formDemande.get('type_demande')?.valid,
+          'form-danger': formDemande.get('type_demande')?.invalid
+        }"
+      >
+        <label class="float-label"><h6> Type de congé :</h6></label>
+        <br />
+        <div class="form-check">
+          <label *ngFor="let radiobutton of radioItems">
+            <input
+              type="radio"
+              [value]="radiobutton.value"
+              formControlName="type_demande"
+            />{{ radiobutton.name }} &nbsp; &nbsp; &nbsp;
+          </label>
+        </div>
+      </div>
+      <div
+                class="form-group"
+                [ngClass]="{
+                  ' form-success': formDemande.get('date_debut')?.valid,
+                  'form-danger': formDemande.get('date_debut')?.invalid
+                }"
+                
+              >
+                <label class="float-label"><h6>Date de début :</h6></label>
+                <input
+                  type="date"
+                  name="footer-date_debut"
+                  formControlName="date_debut"
+                  class="form-control"
+                  required=""
+                />
+                <span class="form-bar"></span>
+              </div>
+              <div
+                class="form-group"
+                [ngClass]="{
+                  ' form-success': formDemande.get('date_fin')?.valid,
+                  'form-danger': formDemande.get('date_fin')?.invalid
+                }"
+                
+              >
+                <label class="float-label"><h6>Date de fin :</h6></label>
+
+                <input
+                  type="date"
+                  name="footer-date_fin"
+                  formControlName="date_fin"
+                  class="form-control"
+                  required=""
+                />
+                <span class="form-bar"></span>
+              </div>
+              <div
+              class="form-group"
+              [ngClass]="{
+                ' form-success': formDemande.get('heure_debut')?.valid,
+                'form-danger': formDemande.get('heure_debut')?.invalid
+              }"
+            >
+              <label class="float-label"><h6>Heure de début :</h6></label>
+              <input
+                type="time"
+                name="footer-heure_debut"
+                formControlName="heure_debut"
+                class="form-control"
+                required=""
+              />
+              <span class="form-bar"></span>
+            </div>
+            <div
+              class="form-group"
+              [ngClass]="{
+                ' form-success': formDemande.get('heure_fin')?.valid,
+                'form-danger': formDemande.get('heure_fin')?.invalid
+              }"
+            >
+              <label class="float-label"><h6>Heure de fin :</h6></label>
+              <input
+                type="time"
+                name="footer-heure_fin"
+                formControlName="heure_fin"
+                class="form-control"
+                required=""
+              />
+              <span class="form-bar"></span>
+            </div>
+             <div class="form-group">
+                <label class="float-label"> <h6>Description :</h6></label>
+
+                <input
+                  type="text"
+                  name="footer-description"
+                  formControlName="description"
+                  class="form-control"
+                  required=""
+                />
+                <span class="form-bar"></span>
+              </div>
+            
+          
+
+      
+      
+      
+             
+
+
+      <!-- <button (click)="postEmployeeDetails()" *ngIf="showAdd" class="btn btn-success" data-bs-dismiss="modal"> Add </button>
+                         <button (click)="updateEmployeeDetails()" *ngIf="showUpdate" class="btn btn-info" data-bs-dismiss="modal"> Update</button>
+                    -->
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-round waves-effect waves-light"
+      (click)="close()"
+      data-dismiss="modal"
+    >
+      Annuler
+    </button>
+    <button
+      class="btn btn-primary btn-round waves-effect waves-light"
+      (click)=" postDemandeDetails()"
+      [disabled]="this.formDemande.invalid"
+      *ngIf="showAdd"
+      type="submit"
+      data-dismiss="modal"
+    >
+      Enregistrer 
+    </button>  
+   
+  </div>
+</ng-template>
+
+<div class="page-header">
+  <div class="page-block">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <div class="page-header-title">
+          <h5 class="m-b-10">Détails des demandes</h5>
+          <p class="m-b-0"></p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <ul class="breadcrumb-title">
+          <li class="breadcrumb-item">
+            <a routerLink="/home/tableau_de_bord"> <i class="fa fa-home"></i> </a>
+          </li>
+          <li class="breadcrumb-item"><a href="#!">tableau de bord</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header" >
+    <h2>Liste des demandes</h2>
+    <span> </span>
+    <div class="card-header-right">
+      <ul class="list-unstyled card-option">
+        <li><i class="fa fa fa-wrench open-card-option"></i></li>
+        <li><i class="fa fa-window-maximize full-card"></i></li>
+        <li><i class="fa fa-minus minimize-card"></i></li>
+        <li><i class="fa fa-refresh reload-card"></i></li>
+        <li><i class="fa fa-trash close-card"></i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="d-flex">
+    <form class="d-flex p-2">
+     
+    </form>
+    <div class="ml-auto p-2">
+      <button
+      (click)="clickAddDemandes(content)"
+
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn waves-effect waves-light  btn-round "
+        style="background-color:pink; color: white;"
+      >
+        + Nouvelle demande
+      </button>
+    </div>
+  </div>
+
+  <div class="card-block table-border-style">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            
+            <th>Type</th>
+            <th>Date début</th>
+            <th> Date fin</th>
+            <th>Heure début</th>
+            <th> Heure fin</th>
+            <th>Description</th>
+            <th> Etat</th>
+
+
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let demande of demandes">
+            <th scope="row"></th>
+            
+            <td>{{ demande.type_demande }}</td>
+            <td>{{ demande.date_debut }}</td>
+            <td>{{ demande.date_fin }}</td>
+            <td>{{ demande.heure_debut }}</td>
+            <td>{{ demande.heure_fin }}</td>
+            <td>{{ demande.description }}</td>
+            <td>{{demande.etat}}</td>
+
+            <td>
+              <button
+              class="btn  waves-effect waves-light btn-warn btn-round"  >
+              En cours
+            </button>
+
+            </td>
+
+            <td>
+             
+              <button
+                class="btn waves-effect waves-light btn-success btn-round"
+              >
+                Accepter
+              </button>
+              <button class="btn  waves-effect waves-light btn-info btn-round">
+                Reffuser
+              </button>
+              <button
+                class="btn mx-3 waves-effect waves-light btn-danger btn-round"
+                (click)="deleteDemande(demande)"
+              >
+                Supprimer
+              </button>
+              <button class="btn waves-effect waves-light btn-secondary btn-round">
+                Archiver
+              </button>
+              
+              
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,366 @@
+<ng-template  #content let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">Détails de l'employé</h6>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formEmployee">
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('cin')?.valid,
+          'form-danger': formEmployee.get('cin')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Cin</h6></label>
+        <input
+          type="number"
+          name="footer-cin"
+          formControlName="cin"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('Nom')?.valid,
+          'form-danger': formEmployee.get('Nom')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Nom</h6></label>
+        <input
+          type="text"
+          name="footer-Nom"
+          formControlName="Nom"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('Prenom')?.valid,
+          'form-danger': formEmployee.get('Prenom')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Prénom</h6></label>
+        <input
+          type="text"
+          name="footer-Prenom"
+          formControlName="Prenom"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('sexe')?.valid,
+          'form-danger': formEmployee.get('sexe')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Sexe :</h6></label>
+        <br />
+        <div class="form-check">
+          <label *ngFor="let radiobutton of radioItems2">
+            <input
+              type="radio"
+              [value]="radiobutton.value"
+              formControlName="sexe"
+            />{{ radiobutton.name }} &nbsp; &nbsp; &nbsp;
+          </label>
+        </div>
+      </div>
+
+      
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('date_nais')?.valid,
+          'form-danger': formEmployee.get('date_nais')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Date de naissance</h6> </label>
+        <input
+          type="date"
+          name="footer-date_nais"
+          formControlName="date_nais"
+          class="form-control"
+          placeholder="jj/mm/aa"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('email')?.valid,
+          'form-danger': formEmployee.get('email')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Adresse e-mail</h6></label>
+        <input
+          type="email"
+          name="footer-email"
+          formControlName="email"
+          class="form-control"
+          pattern=".+@globex\.com" size="30" 
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+
+      <div
+      class="form-group"
+      [ngClass]="{
+        ' form-success': formEmployee.get('mot_de_passe')?.valid,
+        'form-danger': formEmployee.get('mot_de_passe')?.invalid
+      }"
+    >
+      <label class="float-label"><h6>Mot de passe </h6></label>
+      <input
+        type="mot_de_passe"
+        name="footer-mot_de_passe"
+        formControlName="mot_de_passe"
+        class="form-control"
+        size="30" 
+        required=""
+      />
+      <span class="form-bar"></span>
+    </div>
+
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('tel')?.valid,
+          'form-danger': formEmployee.get('tel')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Numéro de téléphone</h6></label>
+        <input
+          type="tel"
+          name="footer-tel"
+          formControlName="tel"
+          class="form-control"
+          pattern="[0-9]{2}-[0-9]{3}-[0-9]{3}"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('grade')?.valid,
+          'form-danger': formEmployee.get('grade')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Grade</h6></label>
+        <input
+          type="grade"
+          name="footer-grade"
+          formControlName="grade"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('role')?.valid,
+          'form-danger': formEmployee.get('role')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>role</h6></label>
+        <input
+          type="text"
+          name="footer-role"
+          formControlName="role"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEmployee.get('salaire')?.valid,
+          'form-danger': formEmployee.get('salaire')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Salaire</h6></label>
+        <input
+          type="salaire"
+          name="footer-salaire"
+          formControlName="salaire"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-round waves-effect waves-light"
+      (click)="close()"
+      data-dismiss="modal"
+    >
+      Annuler
+    </button>
+    <button
+      class="btn btn-primary btn-round waves-effect waves-light"
+      (click)="postEmployeeDetails()"
+      *ngIf="showAdd"
+      type="submit"
+      data-dismiss="modal"
+    >
+      Enregistrer 
+    </button>  
+    <button
+      (click)="updateEmployeeDetails()"
+      *ngIf="showUpdate"
+      class="btn btn-primary btn-round waves-effect waves-light"
+      data-bs-dismiss="modal"
+      type="submit"
+    >
+      Enregistrer
+    </button>
+  </div>
+</ng-template>
+
+<div class="page-header">
+  <div class="page-block">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <div class="page-header-title">
+          <h5 class="m-b-10">Employee details</h5>
+          <p class="m-b-0">Welcome</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <ul class="breadcrumb-title">
+          <li class="breadcrumb-item">
+            <a routerLink="/home"> <i class="fa fa-home"></i> </a>
+          </li>
+          <li class="breadcrumb-item"><a href="#!">Employee</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">
+    <h4>Liste des employés</h4>
+    <span> </span>
+    <div class="card-header-right">
+      <ul class="list-unstyled card-option">
+        <li><i class="fa fa fa-wrench open-card-option"></i></li>
+        <li><i class="fa fa-window-maximize full-card"></i></li>
+        <li><i class="fa fa-minus minimize-card"></i></li>
+        <li><i class="fa fa-refresh reload-card"></i></li>
+        <li><i class="fa fa-trash close-card"></i></li>
+      </ul>
+    </div>
+  </div>
+  <div class="d-flex">
+    <form class="d-flex p-2">
+      <input
+        class="form-control me-2"
+        type="search"
+        placeholder="Chercher"
+        aria-label="Search"
+      />
+      <button
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-primary btn-round text-center"
+        type="submit"
+      >
+        Chercher
+      </button>
+    </form>
+    <div class="ml-auto p-2">
+      <button
+        (click)="clickAddEmployee(content)"
+        type="button"
+        data-bs-toggle="modal"
+        data-bs-target="#exampleModal"
+        class="btn btn-primary btn-round"
+      >
+        + Nouveau Employé
+      </button>
+    </div>
+  </div>
+
+  <div class="card-block table-border-style">
+    <div class="table-responsive">
+      <table class="table">
+        <thead>
+          <tr>
+            
+            <th>Cin</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Sexe</th>
+            <th>Date de naissance</th>
+            <th>E-mail</th>
+            <th>Mot de passe</th>
+            <th>Grade</th>
+            <th>role</th>
+
+            <th>Salaire</th>
+            <th>Num de télephone</th>
+
+            <th>Action</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr class="table-active" *ngFor="let employee of employees">
+            
+            <td>{{ employee.cin }}</td>
+            <td>{{ employee.Nom }}</td>
+            <td>{{ employee.Prenom }}</td>
+            <td>{{ employee.sexe }}</td>
+            <td>{{ employee.date_nais }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.mot_de_passe }}</td>
+            <td>{{ employee.grade }}</td>
+            <td>{{ employee.role }}</td>
+
+            <td>{{ employee.salaire }}</td>
+            <td>{{ employee.tel }}</td>
+            <td>
+              <button
+                style="color: aliceblue"
+                class="btn btn-info btn-round waves-effect waves-light"
+                (click)="onUpdate(employee,content)"
+              >
+                Modifier
+              </button>
+              <button
+                class="btn btn-danger mx-3 btn-round waves-effect waves-light"
+                (click)="deleteEmployee(employee)"
+              >
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

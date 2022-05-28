@@ -1,0 +1,81 @@
+<div id="pcoded" class="pcoded" >
+    <div class="pcoded-overlay-box"></div>
+    <div class="pcoded-container navbar-wrapper">
+        <nav class="navbar header-navbar pcoded-header" header-theme="theme1">
+            <div class="navbar-wrapper">
+                <div class="navbar-logo">
+                    <a class="mobile-menu waves-effect waves-light" id="mobile-collapse">
+                        <i class="ti-menu"></i>
+                    </a>
+                    <div class="mobile-search waves-effect waves-light">
+                        <div class="header-search">
+                            <div class="main-search morphsearch-search">
+                                <div class="input-group">
+                                    <span class="input-group-addon search-close"><i class="ti-close"></i></span>
+                                    <input type="text" class="form-control" placeholder="Enter Keyword">
+                                    <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <a routerLink="/dashboard">
+                        <img src="assets/images/app-logo.jpg" class="img-radius" alt="Logo de l'application">
+                        
+                    </a>
+                    
+                   
+                </div>
+              
+                <div class="navbar-container container-fluid">
+                    <ul class="nav-left">
+                        
+                        <li>
+                            <a  onclick="document.documentElement.requestFullscreen()" class="waves-effect waves-light">
+                                <i class="ti-fullscreen"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="nav-right">
+                        <li class="header-notification">
+                            <a    class="waves-effect waves-light">
+                                <i class="ti-bell"></i>
+                                <span class="badge bg-c-red"></span>
+                            </a>
+                            <ul class="show-notification" >
+                                <li>
+                                    <h4>Notifications</h4>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 1111</h6>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 2222</h6>
+                                </li>
+                                <li class="waves-effect waves-light">
+                                    <h6> 3333</h6>
+                                </li>
+                            </ul>
+                        </li>
+                        
+                        <li class="user-profile header-notification" >
+                            <a  class="waves-effect waves-light">
+                                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                <span>{{nom}} {{prenom}}</span>
+                                <i class="ti-angle-down"></i>
+                            </a>
+                            <ul class="show-notification profile-notification" >
+                                
+                                <li class="waves-effect waves-light" routerLinkActive="active">
+                                    <a routerLink="/login">
+                                        <i class="ti-layout-sidebar-left"></i> Déconnexion 
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </div>
+</div>        

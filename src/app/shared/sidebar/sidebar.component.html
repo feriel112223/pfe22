@@ -1,0 +1,115 @@
+<nav class="pcoded-navbar" active-item-theme="theme1">
+  <div class="sidebar_toggle">
+    <a href="#"><i class="icon-close icons"></i></a>
+  </div>
+  <div class="pcoded-inner-navbar main-menu">
+    <div class="">
+      <div class="main-menu-header">
+        <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+        <div class="user-details">
+          <span id="more-details">
+            {{nom}} {{prenom}}
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" menu-title-theme="theme1">
+      Applications
+    </div>
+    <ul class="pcoded-item pcoded-left-item">
+      
+      <li routerLinkActive="active"  routerLink="/home/presence">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-timer"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
+            >Présence
+          </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+        
+      </li>
+      <li routerLinkActive="active"  routerLink="/home/dashboard">
+        <a  class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-home"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>dashboard</b></span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      
+      <li routerLinkActive="active"  routerLink="/home/calendrier">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-calendar"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
+            >Calendrier de travail
+          </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+        
+      </li>
+      
+      <li routerLinkActive="active"  routerLink="/home/conges">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
+            >Liste des congés
+          </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+        
+      </li>
+      <li routerLinkActive="active"  routerLink="/home/listedemandes">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
+            >Liste des demandes
+          </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+        
+      </li>
+      <li routerLinkActive="active"  routerLink="/home/liste_des_pv">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
+            >Les PV journaliers
+          </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+        
+      </li>
+    </ul>
+    <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" menu-title-theme="theme1">Gestion RH 
+    </div>
+    <ul class="pcoded-item pcoded-left-item" > 
+      <li routerLinkActive="active"  routerLink="/home/demandes">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-clipboard"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Demandes des congés</span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      <li routerLinkActive="active"  routerLink="/home/employee">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-user"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Employee</span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      
+    </ul>
+    <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" menu-title-theme="theme1">
+    </div>
+    <ul class="pcoded-item pcoded-left-item" > 
+      <li routerLinkActive="active"  routerLink="/home/fiche_de_paies">
+        <a class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-files"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Fiches de paies </span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+    </ul>  
+    
+    
+  </div>
+</nav>

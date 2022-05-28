@@ -1,0 +1,316 @@
+<div class="page-header">
+  <div class="page-block">
+    <div class="row align-items-center">
+      <div class="col-md-8">
+        <div class="page-header-title">
+          <h5 class="m-b-10">calendrier de travail</h5>
+          <p class="m-b-0">Welcome</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <ul class="breadcrumb-title">
+          <li class="breadcrumb-item">
+            <a routerLink="/home"> <i class="fa fa-home"></i> </a>
+          </li>
+          <li class="breadcrumb-item"><a href="#!"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row text-center">
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        mwlCalendarPreviousView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Avant
+      </div>
+      <div
+        class="btn btn-outline-secondary"
+        mwlCalendarToday
+        [(viewDate)]="viewDate"
+      >
+        Aujourd'hui
+      </div>
+      <div
+        class="btn btn-primary"
+        mwlCalendarNextView
+        [view]="view"
+        [(viewDate)]="viewDate"
+        (viewDateChange)="closeOpenMonthViewDay()"
+      >
+        Aprés
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <h3>{{ viewDate | calendarDate: view + "ViewTitle":"fr" }}</h3>
+  </div>
+  <div class="col-md-4">
+    <div class="btn-group">
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Month)"
+        [class.active]="view === CalendarView.Month"
+      >
+        Mois
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Week)"
+        [class.active]="view === CalendarView.Week"
+      >
+        Semaine
+      </div>
+      <div
+        class="btn btn-primary"
+        (click)="setView(CalendarView.Day)"
+        [class.active]="view === CalendarView.Day"
+      >
+        Jour
+      </div>
+    </div>
+  </div>
+</div>
+<br />
+<div [ngSwitch]="view">
+  <mwl-calendar-month-view
+    *ngSwitchCase="CalendarView.Month"
+    [viewDate]="viewDate"
+    [events]="events"
+    [refresh]="refresh"
+    [locale]="locale"
+    [activeDayIsOpen]="activeDayIsOpen"
+    (dayClicked)="dayClicked($event.day)"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+  >
+  </mwl-calendar-month-view>
+  <mwl-calendar-week-view
+    *ngSwitchCase="CalendarView.Week"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+  >
+  </mwl-calendar-week-view>
+  <mwl-calendar-day-view
+    *ngSwitchCase="CalendarView.Day"
+    [viewDate]="viewDate"
+    [events]="events"
+    [locale]="locale"
+    [refresh]="refresh"
+    (eventClicked)="handleEvent('Clicked', $event.event)"
+  >
+  </mwl-calendar-day-view>
+</div>
+<!-- Everything you see below is just for the demo, you don't need to include it in your app -->
+
+<br /><br /><br />
+
+<h3>
+  PV journalier
+  <button class="btn btn-primary btn-round float-right" (click)="clickAddEvent(content)">
+    + Ajouter votre tache
+  </button>
+  <div class="clearfix"></div>
+</h3>
+
+<div class="table-responsive">
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Tache réalisée</th>
+        <th>Date</th>
+        <th>Début</th>
+        <th>Fin</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let event of calendarEvent">
+        <td>
+          <span  type="text"
+      class="form-control"
+      
+      (keyup)="refresh.next()"> {{event.event}} </span>
+         </td>
+         <td>
+          <span  type="text"
+          class="form-control"
+          
+          (keyup)="refresh.next()"> {{event.dateEvent}} </span>
+      </td>
+         
+     
+         
+    
+    <td>  <span  type="text"
+      class="form-control"
+      
+      (keyup)="refresh.next()"> {{event.heureStart}} </span>
+     
+ 
+ </td>
+ <td>  <span  type="text"
+  class="form-control"
+  
+  (keyup)="refresh.next()"> {{event.heureEnd}} </span>
+ 
+
+</td>
+
+
+
+        <td>
+          <button class="btn btn-danger btn-round" (click)="deleteEvent(event)">
+            Supprimer
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+
+<ng-template #content let-modal>
+  <div class="modal-header">
+    <h6 class="modal-title" id="modal-basic-title">Ajouter la tache réalisée</h6>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formEvent">
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEvent.get('event')?.valid,
+          'form-danger': formEvent.get('event')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Tache réalisée</h6></label>
+        <input
+          type="text"
+          name="footer-event"
+          formControlName="event"
+          class="form-control"
+          required=""
+        />
+        <span class="form-bar"></span>
+      </div>
+      <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEvent.get('dateEvent')?.valid,
+          'form-danger': formEvent.get('dateEvent')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Date </h6></label>
+        <input
+        class="form-control"
+        type="date"
+        formControlName="dateEvent"
+        (ngModelChange)="refresh.next()"
+        placeholder="Not set"
+      />
+
+        <span class="form-bar"></span>
+      </div>
+      <!-- <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEvent.get('heureStart')?.valid,
+          'form-danger': formEvent.get('heureStart')?.invalid
+        }"
+      >
+        <label class="float-label"><h6> Heure de début</h6></label>
+        <ngb-timepicker  formControlName="heureStart"></ngb-timepicker>
+     
+       
+        <span class="form-bar"></span>
+      </div> -->
+
+
+      <div
+      class="form-group"
+      [ngClass]="{
+        ' form-success': formEvent.get('heureStart')?.valid,
+        'form-danger': formEvent.get('heureStart')?.invalid
+      }"
+    >
+      <label class="float-label"><h6>Heure de début :</h6></label>
+      <input
+        type="time"
+        name="footer-heureStartt"
+        formControlName="heureStart"
+        class="form-control"
+        required=""
+      />
+      <span class="form-bar"></span>
+    </div>
+      <!-- <div
+        class="form-group"
+        [ngClass]="{
+          ' form-success': formEvent.get('heureEnd')?.valid,
+          'form-danger': formEvent.get('heureEnd')?.invalid
+        }"
+      >
+        <label class="float-label"><h6>Heure de fin </h6> </label>
+        <ngb-timepicker formControlName="heureEnd"></ngb-timepicker>
+       
+       
+        <span class="form-bar"></span>
+      </div> -->
+      <div
+      class="form-group"
+      [ngClass]="{
+        ' form-success': formEvent.get('heureEnd')?.valid,
+        'form-danger': formEvent.get('heureEnd')?.invalid
+      }"
+    >
+      <label class="float-label"><h6>Heure de fin :</h6></label>
+      <input
+        type="time"
+        name="footer-heureEnd"
+        formControlName="heureEnd"
+        class="form-control"
+        required=""
+      />
+      <span class="form-bar"></span>
+    </div>
+
+
+
+
+
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button
+      type="button"
+      class="btn btn-secondary btn-round waves-effect waves-light"
+     (click)="modal.dismiss('Cross click')"
+    >
+      Annuler
+    </button>
+    <button
+      class="btn btn-primary btn-round waves-effect waves-light"
+      type="submit"
+      data-dismiss="modal"
+      (click)=" postEvent()"
+      
+      >
+      Enregistrer 
+    </button>  
+  </div>
+</ng-template>
