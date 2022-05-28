@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavbarComponent implements OnInit {
   id= JSON.parse(localStorage.getItem("user")||'').id;
+  role= JSON.parse(localStorage.getItem("user")||'').role;
   nom= JSON.parse(localStorage.getItem("user")||'').Nom;
   prenom= JSON.parse(localStorage.getItem("user")||'').Prenom;
   

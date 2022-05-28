@@ -23,4 +23,17 @@ export class EmployeeService {
   deleteEmployee(id: number) {
     return this.http.delete<any>(this.path + "/employes/"+id );
   }
+
+  getEventByid(id: number) {
+    return this.http.get<any>(this.path + "/employes/"+id );
+  }
+
+
+  uploadImageAdmin(data: any) {
+    const formData = new FormData();
+    formData.append("file", data);
+    console.log(formData);
+
+    return this.http.post(this.path + "/img", formData);
+  }
 }

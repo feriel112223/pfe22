@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -12,7 +13,7 @@ export class AuthService {
   isLogin=false;
   info:any
 
-  constructor(private http:HttpClient) { }
+  constructor(private http:HttpClient,private router:Router) { }
   // login
   loginUser(data:any): Observable<any>{
    this.isLogin=true;
@@ -31,6 +32,7 @@ export class AuthService {
   logout(){
     this.isLogin=false;
    localStorage.removeItem("user");
+   this.router.navigate(['/login']);
 
 
     

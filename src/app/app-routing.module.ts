@@ -1,5 +1,6 @@
 import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AdminGuard } from './admin.guard';
 import { LoginComponent } from './Auth/login/login.component';
 import { AdmincongesComponent } from './dashboards/adminconges/adminconges.component';
 import { AdmineventComponent } from './dashboards/adminevent/adminevent.component';
@@ -13,16 +14,16 @@ import { ListeCongesComponent } from './dashboards/liste-conges/liste-conges.com
 import { PresenceComponent } from './dashboards/presence/presence.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { SidebarComponent } from './shared/sidebar/sidebar.component';
-
+canActivate:[AdminGuard]
 const routes: Routes = [
  
-  {path:"",redirectTo:'login',pathMatch:'full'},
+   {path:"",redirectTo:'login',pathMatch:'full'},
  
   {path:'login',component:LoginComponent}, 
   {path:'home',component:HomeComponent,
-  children:[
+   children:[
     {path:'demandes',component:DemandesComponent},
-    {path:'employee',component:EmloyeeComponent},
+    {path:'employee',component:EmloyeeComponent,canActivate:[AdminGuard]},
     {path:'calendrier',component:CalendrierDeTravailComponent},
     {path:'conges',component:ListeCongesComponent},
     {path:'fiche_de_paies',component:FicheDePaiesComponent},
@@ -30,15 +31,15 @@ const routes: Routes = [
     {path:'liste_des_pv',component:AdmineventComponent},
     {path:'presence',component:PresenceComponent},
     {path:'dashboard',component:DashComponent},    
-  ],
-},
+   ]}]
+ 
     
   
     
   
   
   
-];
+
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

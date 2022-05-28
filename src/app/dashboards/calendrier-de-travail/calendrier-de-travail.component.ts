@@ -18,7 +18,7 @@ import {
   addHours,
 } from 'date-fns';
 import { Subject } from 'rxjs';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import {
   CalendarEvent,
   CalendarEventAction,
@@ -49,6 +49,8 @@ const colors: any = {
 })
 export class CalendrierDeTravailComponent implements OnInit {
   showForm=false;
+  closeResult:any
+  Event_id :any
   testJour=false;
   disable : any
   locale: string = 'fr';
@@ -70,6 +72,7 @@ export class CalendrierDeTravailComponent implements OnInit {
   modalData?: {
     action: string;
     event: CalendarEvent;
+    
   };
 
   actions: CalendarEventAction[] = [
@@ -124,6 +127,8 @@ export class CalendrierDeTravailComponent implements OnInit {
     })
     this.getAllEvent();
   }
+
+ 
 
   dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
     if (isSameMonth(date, this.viewDate)) {
@@ -180,10 +185,7 @@ export class CalendrierDeTravailComponent implements OnInit {
 postEvent(){
    console.log("hhhhhhhh",this.formEvent.value);
   let start= this.formEvent.get('heureStart')?.value
-  // console.log(start.hour);
-
-  // let start=(startt.hour+":"+startt.minute+":"+startt.second)
-  // console.log("heureStart",start);
+ 
   
   
   let end= this.formEvent.get('heureEnd')?.value
@@ -192,6 +194,9 @@ postEvent(){
   let jNow=dateNow.getDay()
   let mNow=dateNow.getMonth()
   let yNow=dateNow.getFullYear()
+  let jEvent=da.getDay()
+  let mEvent=da.getMonth()
+  let yEvent=da.getFullYear()
   let dd=new Date(yNow+"-"+mNow+"-"+jNow)
   console.log(da,"et",dateNow.getMonth());
   
@@ -209,7 +214,7 @@ postEvent(){
   })
   if(this.disable)
     alert("veriifer vos heure ")
-   else  if(dd==da)
+   else  if(jNow!=jEvent && mNow!=mEvent && yNow!=yEvent )
     alert("veriifer la date  ")
 else{
   if(!this.testJour)
@@ -297,15 +302,21 @@ else{
     this.modalService.dismissAll()
   }
 
-  deleteEvent(event : any){
-    this.calendrierServ.deleteEvent(event.id)
+  
+
+  deleteEvent(){
+    this.calendrierServ.deleteEvent(this.Event_id)
     .subscribe(res=>{
       this.toastr.success('votre tache est supprimée ');
-      //alert('votre tache est  supprimée !');
+     
      
       this.getAllEvent();
     })
   }
+
+ 
+
+ 
 
   //deleteEvent(eventToDelete: CalendarEvent) {
     //this.events = this.events.filter((event) => event !== eventToDelete);
@@ -326,5 +337,26 @@ else{
     
 
   }
-
-}
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return "by pressing ESC";
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return "by clicking on a backdrop";
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  openDelete(content: any, element: any) {
+    this.Event_id = element.id;
+    this.modalService
+      .open(content, )
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+     
+}}

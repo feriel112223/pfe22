@@ -1,5 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Chart } from 'chart.js';
+import { ToastrService } from 'ngx-toastr';
+import { CalendrierService } from 'src/app/shared/services/calendrier.service';
+import { EmployeeService } from 'src/app/shared/services/employee.service';
 @Component({
   selector: 'app-dash',
   templateUrl: './dash.component.html',
@@ -7,6 +10,11 @@ import { Chart } from 'chart.js';
 })
 export class DashComponent implements OnInit {
   data=localStorage.getItem("user")||'';
+  event:any
+
+  dataEvent :any=[]
+  idEmploye= JSON.parse(localStorage.getItem("user")||'').id;
+
     canvas: any;
     ctx: any;
     @ViewChild('mychart') mychart:any;
@@ -36,10 +44,32 @@ export class DashComponent implements OnInit {
         },
     });
     }
-  constructor() { }
+  constructor(private employeeServ:EmployeeService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
     console.log("goalll  bedis ",this.data)
+    this.geteventByemployeId()
+  }
+
+  geteventByemployeId(){
+    this.employeeServ.getEventByid(this.idEmploye)
+    .subscribe(res=>{
+this.event=res
+     console.log(res);
+
+     this.event.forEach((element:any) => {
+      this.dataEvent.push({
+        dateEvent:element.dateEvent,
+     
+        heureTravail: element.heureEnd-element.heureStart
+      })
+       
+     });
+     
+     
+     
+      
+    })
   }
  
 

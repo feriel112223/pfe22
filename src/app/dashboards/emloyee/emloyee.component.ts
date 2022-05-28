@@ -19,6 +19,10 @@ export class EmloyeeComponent implements OnInit {
   showAdd: boolean = false;
   showUpdate : boolean = false;
   imageSrc: string = '';
+  imageFile:any
+
+  role= JSON.parse(localStorage.getItem("user")||'').role;
+
   
   
    constructor(private employeesServ:EmployeeService ,private formbuilder:FormBuilder,private toastr: ToastrService,
@@ -45,7 +49,7 @@ export class EmloyeeComponent implements OnInit {
        grade:['', Validators.required],
        salaire:['',Validators.required],
        tel :['',Validators.required],
-       role :['',Validators.required],
+       role :['EMPLOYE',Validators.required],
        
        
 
@@ -58,6 +62,23 @@ export class EmloyeeComponent implements OnInit {
       //this.employees=this.employeesServ.getAllEmployees();
       
    }
+
+
+   onFileChanged(event:any) {
+    // for (const property in event.target.files) {
+    //   this.imageFile.push(property);
+    //   console.log(this.imageFile);
+    // }
+    const files = event.target.files;
+    if (files)
+      for (const f of files) {
+        this.imageFile.push(f);
+      }
+    // console.log("heloo", event.target.files);
+    // this.imageFile.push(event.target.files[0]);
+    console.log(this.imageFile);
+  }
+
    clickAddEmployee(content:any){
       this.showForm= !this.showForm;
 
@@ -111,6 +132,7 @@ export class EmloyeeComponent implements OnInit {
    getAllEmployee(){
     this.employeesServ.getEmployee().subscribe((res : any)=>{
       this.employees = res;
+      this.employees.filter((item:any)=>item.role=="EMPLOYE")
       console.log(res);
 
     },
@@ -148,6 +170,7 @@ export class EmloyeeComponent implements OnInit {
    
   }
   updateEmployeeDetails(){
+    this.employees.id = this.formEmployee.value.id;
     this.employees.cin = this.formEmployee.value.cin;
     this.employees.Nom = this.formEmployee.value.Nom;
     this.employees.Prenom = this.formEmployee.value.Prenom;
@@ -157,6 +180,7 @@ export class EmloyeeComponent implements OnInit {
     this.employees.mot_de_passe = this.formEmployee.value.mot_de_passe;    
     this.employees.tel = this.formEmployee.value.tel;
     this.employees.grade = this.formEmployee.value.grade;
+    this.employees.role = "EMPLOYE";
     this.employees.salaire = this.formEmployee.value.salaire;
 
     this.employeesServ.updateEmployee(this.employees,this.employees.id)
