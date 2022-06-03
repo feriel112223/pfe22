@@ -20,7 +20,8 @@
                     </div>
                    
                     <a routerLink="/dashboard">
-                        <img src="assets/images/app-logo.jpg" class="img-radius" alt="Logo de l'application">
+
+                        <img src="assets/images/app-logo.jpg" class="img-radius" alt="GRH Congés">
                         
                     </a>
                     
@@ -37,34 +38,26 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
-                        <li class="header-notification">
+                        <li  (click)="toggleDropDownN()" class="header-notification">
                             <a    class="waves-effect waves-light">
                                 <i class="ti-bell"></i>
                                 <span class="badge bg-c-red"></span>
                             </a>
-                            <ul class="show-notification" >
+                            <ul class="show-notification" [ngStyle]="{'display': dropDownNotification}" >
                                 <li>
                                     <h4>Notifications</h4>
                                 </li>
-                                <li class="waves-effect waves-light">
-                                    <h6> 1111</h6>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <h6> 2222</h6>
-                                </li>
-                                <li class="waves-effect waves-light">
-                                    <h6> 3333</h6>
-                                </li>
+                                
                             </ul>
                         </li>
                         
                         <li class="user-profile header-notification" >
-                            <a  class="waves-effect waves-light">
+                            <a  (click)="toggleDropDown()" class="waves-effect waves-light">
                                 <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
                                 <span>{{nom}} {{prenom}}</span>
                                 <i class="ti-angle-down"></i>
                             </a>
-                            <ul class="show-notification profile-notification" >
+                            <ul class="show-notification profile-notification" [ngStyle]="{'display': dropDownProfil}" >
                                 
                                 <li class="waves-effect waves-light" routerLinkActive="active">
                                     <a routerLink="/login">

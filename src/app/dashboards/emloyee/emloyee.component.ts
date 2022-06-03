@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
+import { ModalDismissReasons } from '@ng-bootstrap/ng-bootstrap';
+
 import { EmployeeService } from 'src/app/shared/services/employee.service';
 
 
@@ -13,11 +15,13 @@ import { EmployeeService } from 'src/app/shared/services/employee.service';
 export class EmloyeeComponent implements OnInit {
   employees:any;
   formEmployee:FormGroup;
+  employee_id:any;
   showForm=false;
   model2 = { option: '' };
   radioItems2: any;
   showAdd: boolean = false;
   showUpdate : boolean = false;
+  closeResult:any
   imageSrc: string = '';
   imageFile:any
 
@@ -142,15 +146,7 @@ export class EmloyeeComponent implements OnInit {
     }
     )
   }
-  deleteEmployee(employee : any){
-    this.employeesServ.deleteEmployee(employee.id)
-    .subscribe(res=>{
-      this.toastr.success('Employé  supprimé');
-     // alert('Employé  supprimé !');
-     
-      this.getAllEmployee();
-    })
-  }
+ 
   onUpdate(employee : any , content:any){
     this.showAdd = false;
     this.openModal(content)
@@ -170,8 +166,9 @@ export class EmloyeeComponent implements OnInit {
    
   }
   updateEmployeeDetails(){
-    this.employees.id = this.formEmployee.value.id;
-    this.employees.cin = this.formEmployee.value.cin;
+    this.employees.id = JSON.parse(localStorage.getItem('user')).id
+    this.employees = this.formEmployee.value;
+/*     this.employees.cin = this.formEmployee.value.cin;
     this.employees.Nom = this.formEmployee.value.Nom;
     this.employees.Prenom = this.formEmployee.value.Prenom;
     this.employees.sexe = this.formEmployee.value.sexe;
@@ -179,11 +176,12 @@ export class EmloyeeComponent implements OnInit {
     this.employees.email = this.formEmployee.value.email;
     this.employees.mot_de_passe = this.formEmployee.value.mot_de_passe;    
     this.employees.tel = this.formEmployee.value.tel;
-    this.employees.grade = this.formEmployee.value.grade;
+    this.employees.grade = this.formEmployee.value.grade; */
     this.employees.role = "EMPLOYE";
-    this.employees.salaire = this.formEmployee.value.salaire;
+  //  this.employees.salaire = this.formEmployee.value.salaire;
+  // console.log(this.employees)
 
-    this.employeesServ.updateEmployee(this.employees,this.employees.id)
+    this.employeesServ.updateEmployee(this.employees,JSON.parse(localStorage.getItem('user')).id)
     .subscribe((res : any)=>{
       this.toastr.success('Employé modifié avec succés ');
       //alert("Employé modifié avec succée ! ");
@@ -198,7 +196,39 @@ export class EmloyeeComponent implements OnInit {
     })
 
   }
+  deleteEmployee(employee : any){
+    this.employeesServ.deleteEmployee(this.employee_id)
+    .subscribe(res=>{
+      this.toastr.success('Employé  supprimé');
+     // alert('Employé  supprimé !');
+     
+      this.getAllEmployee();
+    })
   }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return "by pressing ESC";
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return "by clicking on a backdrop";
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  openDelete(content: any, element: any) {
+    this.employee_id = element.id;
+    this.modalService
+      .open(content, )
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+
+  }
+}
   
   
  

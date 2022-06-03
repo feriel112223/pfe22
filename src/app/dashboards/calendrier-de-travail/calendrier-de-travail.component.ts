@@ -185,20 +185,17 @@ export class CalendrierDeTravailComponent implements OnInit {
 postEvent(){
    console.log("hhhhhhhh",this.formEvent.value);
   let start= this.formEvent.get('heureStart')?.value
- 
-  
-  
   let end= this.formEvent.get('heureEnd')?.value
-  let da= this.formEvent.get('dateEvent')?.value
-  let dateNow=new Date()
-  let jNow=dateNow.getDay()
-  let mNow=dateNow.getMonth()
-  let yNow=dateNow.getFullYear()
-  let jEvent=da.getDay()
-  let mEvent=da.getMonth()
-  let yEvent=da.getFullYear()
-  let dd=new Date(yNow+"-"+mNow+"-"+jNow)
-  console.log(da,"et",dateNow.getMonth());
+  let da= new Date(this.formEvent.get('dateEvent')?.value)
+  // let dateNow=new Date()
+  // let jNow=dateNow.getDay()
+  // let mNow=dateNow.getMonth()
+  // let yNow=dateNow.getFullYear()
+  // let jEvent=da.getDay()
+  // let mEvent=da.getMonth()
+  // let yEvent=da.getFullYear()
+  // let dd=new Date(yNow+"-"+mNow+"-"+jNow)
+  // //console.log(da,"et",dateNow.getMonth());
   
   if(start > end){
     this.disable=true
@@ -208,14 +205,15 @@ postEvent(){
   
   this.jourFerie.forEach((element:any)=>{
     if (da==element)
-    console.log("jour ferié")
+    alert("c'est un jour férié")
+    //console.log("jour ferié")
     this.testJour=true
   
   })
   if(this.disable)
-    alert("veriifer vos heure ")
-   else  if(jNow!=jEvent && mNow!=mEvent && yNow!=yEvent )
-    alert("veriifer la date  ")
+    alert("veriifer vos informations")
+  //  else  if(jNow!=jEvent && mNow!=mEvent && yNow!=yEvent )
+  //   alert("veriifer vos informations ")
 else{
   if(!this.testJour)
   {
@@ -229,7 +227,7 @@ else{
     
     this.getAllEvent()
     //this.toastr.success('Votre tache ajouté avec succés!');
-    alert("Votre tache ajouté avec succé!");
+    alert("Votre tache ajoutée avec succés!");
   }), (err:any)=>{
     alert("il y a un problème")
     console.log(err);
@@ -333,7 +331,7 @@ else{
   ngOnInit(): void {
    
 
-    console.log("title",this.titleEvent);
+    //console.log("title",this.titleEvent);
     
 
   }

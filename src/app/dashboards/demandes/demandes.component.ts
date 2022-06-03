@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DemandesService } from 'src/app/shared/services/demandes.service';
+import { ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-demandes',
@@ -15,12 +16,19 @@ export class DemandesComponent implements OnInit {
   model = { option: '' };
   model1 = { option1: '' };
   selectedConge: any;
+  testJour=false;
+  disable : any
   demandes: any;
+  closeResult:any
+  Demande_id :any
   formDemande: FormGroup;
+  etat :any=['en attente']
   
   showAdd: boolean= false;
   showUpdate : boolean = false ;
   showForm: any;
+  jourFerie=["2022-01-01","2022-03-20","2022-04-09","2022-05-01","2022-07-25","2022-08-13","2022-10-15","2022-12-17"
+  ]
   constructor(
     private demandesServ: DemandesService,
     private formbuilder: FormBuilder,
@@ -28,9 +36,8 @@ export class DemandesComponent implements OnInit {
     private modalService: NgbModal
   ) {
     this.radioItems = [
-      { name: 'Conge solde', value: 'congeSolde' },
-      { name: 'Conge sans solde', value: 'congeSansSolde' },
-      { name: 'Autorisation', value: 'autorisation' },
+      { name: 'Conge solde', value: 'AvecSolde' },
+      { name: 'Conge sans solde', value: 'SansSolde' },
 
     ];
 
@@ -90,6 +97,14 @@ export class DemandesComponent implements OnInit {
   }
   postDemandeDetails()
    {
+    {
+
+
+
+
+
+
+
      console.log(this.formDemande.value)
     this.demandesServ.postDemande(this.formDemande.value)
     .subscribe(res=>{
@@ -105,18 +120,44 @@ export class DemandesComponent implements OnInit {
     }
     )
   }
+   }
    
   deleteDemande(Demande : any){
-    this.demandesServ.deleteDemande(Demande.id)
+    this.demandesServ.deleteDemande(this.Demande_id)
     .subscribe((res : any )=>{
       this.toastr.success('Demande  supprimée ');
-      this.getAllDemande();
-    })
+     this.getAllDemande();
+     })
   }
+
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return "by pressing ESC";
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return "by clicking on a backdrop";
+    } else {
+      return `with: ${reason}`;
+    }
+  }
+  openDelete(content: any, element: any) {
+    this.Demande_id = element.id;
+    this.modalService
+      .open(content, )
+      .result.then(
+        (result) => {
+          this.closeResult = `Closed with: ${result}`;
+        },
+        (reason) => {
+          this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+        }
+      );
+     
+}}
 
     
 
-     
+
+
    
   
-}
+

@@ -9,29 +9,6 @@ export class DemandesService {
   path ="http://localhost:8000/api";
 
   constructor(private http: HttpClient) {
-   
-    this.demandes = [
-      {
-        Nom:'abbes',
-        Prenom:'feriel',
-        type:'Autorisation',
-        hdebut:'jjj',
-        hfin:'hhh',
-        description:'aaaa',
-        
-      },
-      {
-        
-        Nom:'Benali',
-        Prenom:'ahmed',
-        type:'congés sans solde',
-        hdebut:'ddddd',
-        hfin:'hhhh',
-        description:'hhhhhh',
-          
-      }
-      
-        ];
   }
 
   /**
@@ -47,6 +24,12 @@ export class DemandesService {
   }
   updateDemande(data: any, id: number) {
     return this.http.put<any>(this.path + "/conges/" + id, data);
+  }
+  accepterEtat( id: number) {
+    return this.http.put<any>(this.path + "/conges/accepte/" + id ,"");
+  }
+  refuserEtat( id: number) {
+    return this.http.put<any>(this.path + "/conges/refuse/" + id ,"");
   }
   deleteDemande(id: number) {
     return this.http.delete<any>(this.path + "/conges/"+ id);

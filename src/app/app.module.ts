@@ -31,9 +31,10 @@ import { ChartsModule } from 'ng2-charts';
 import {NgxPrintModule} from 'ngx-print';
 import { DashComponent } from './dashboards/dash/dash.component';
 import { AdmincongesComponent } from './dashboards/adminconges/adminconges.component';
-import { AdmineventComponent } from './dashboards/adminevent/adminevent.component';
 import { PresenceComponent } from './dashboards/presence/presence.component';
- 
+import { AdmindashComponent } from './dashboards/admindash/admindash.component';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -49,8 +50,8 @@ registerLocaleData(localeFr);
     FicheDePaiesComponent,
     DashComponent,
     AdmincongesComponent,
-    AdmineventComponent,
     PresenceComponent,
+    AdmindashComponent,
   ],
 
   imports: [
@@ -72,6 +73,8 @@ registerLocaleData(localeFr);
     AngularDigitalClockModule,
     ChartsModule,
     NgxPrintModule,
+    MatFormFieldModule,
+    MatIconModule
     
   ],
   providers: [],

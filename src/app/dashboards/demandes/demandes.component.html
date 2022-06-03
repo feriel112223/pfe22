@@ -1,6 +1,6 @@
 <ng-template #content let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Détails du demande</h6>
+    <h6 class="modal-title" id="modal-basic-title">Détails  demande</h6>
     <button
       type="button"
       class="btn-close"
@@ -17,7 +17,7 @@
           'form-danger': formDemande.get('type_demande')?.invalid
         }"
       >
-        <label class="float-label"><h6> Type de congé :</h6></label>
+        <label class="float-label"><h6> Type congé :</h6></label>
         <br />
         <div class="form-check">
           <label *ngFor="let radiobutton of radioItems">
@@ -29,7 +29,7 @@
           </label>
         </div>
       </div>
-      <div
+              <div
                 class="form-group"
                 [ngClass]="{
                   ' form-success': formDemande.get('date_debut')?.valid,
@@ -37,7 +37,7 @@
                 }"
                 
               >
-                <label class="float-label"><h6>Date de début :</h6></label>
+                <label class="float-label"><h6>Date début :</h6></label>
                 <input
                   type="date"
                   name="footer-date_debut"
@@ -55,7 +55,7 @@
                 }"
                 
               >
-                <label class="float-label"><h6>Date de fin :</h6></label>
+                <label class="float-label"><h6>Date fin :</h6></label>
 
                 <input
                   type="date"
@@ -73,7 +73,7 @@
                 'form-danger': formDemande.get('heure_debut')?.invalid
               }"
             >
-              <label class="float-label"><h6>Heure de début :</h6></label>
+              <label class="float-label"><h6>Heure  début :</h6></label>
               <input
                 type="time"
                 name="footer-heure_debut"
@@ -90,7 +90,7 @@
                 'form-danger': formDemande.get('heure_fin')?.invalid
               }"
             >
-              <label class="float-label"><h6>Heure de fin :</h6></label>
+              <label class="float-label"><h6>Heure  fin :</h6></label>
               <input
                 type="time"
                 name="footer-heure_fin"
@@ -101,7 +101,7 @@
               <span class="form-bar"></span>
             </div>
              <div class="form-group">
-                <label class="float-label"> <h6>Description :</h6></label>
+                <label class="float-label"> <h6> Cause :</h6></label>
 
                 <input
                   type="text"
@@ -112,18 +112,7 @@
                 />
                 <span class="form-bar"></span>
               </div>
-            
-          
-
-      
-      
-      
-             
-
-
-      <!-- <button (click)="postEmployeeDetails()" *ngIf="showAdd" class="btn btn-success" data-bs-dismiss="modal"> Add </button>
-                         <button (click)="updateEmployeeDetails()" *ngIf="showUpdate" class="btn btn-info" data-bs-dismiss="modal"> Update</button>
-                    -->
+              
     </form>
   </div>
   <div class="modal-footer">
@@ -148,13 +137,42 @@
    
   </div>
 </ng-template>
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Message de confirmation </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+   
+      <div class="modal-body">
+        <p>Supprimer cett tache !</p>
+      </div>
+      <div class="modal-footer">
+        <input
+          type="button"
+          class="btn btn-default btn-round"
+          data-dismiss="modal"
+          value="Annuler"
+        />
+        <input type="submit" class="btn btn-danger btn-round" (click)="deleteDemande(Demande_id)" value="Supprimer" />
+      </div>
+    </form>
+  </div>
+</ng-template>
+
 
 <div class="page-header">
   <div class="page-block">
     <div class="row align-items-center">
       <div class="col-md-8">
         <div class="page-header-title">
-          <h5 class="m-b-10">Détails des demandes</h5>
+          <h5 class="m-b-10">Détails demandes</h5>
           <p class="m-b-0"></p>
         </div>
       </div>
@@ -194,35 +212,33 @@
         type="button"
         data-bs-toggle="modal"
         data-bs-target="#exampleModal"
-        class="btn waves-effect waves-light  btn-round "
-        style="background-color:pink; color: white;"
+        class="btn btn-primary btn-round"
       >
         + Nouvelle demande
       </button>
     </div>
   </div>
+            
 
+<div class="card" >
   <div class="card-block table-border-style">
     <div class="table-responsive">
       <table class="table">
         <thead>
-          <tr>
-            
+          <tr class="table-success">
             <th>Type</th>
             <th>Date début</th>
             <th> Date fin</th>
             <th>Heure début</th>
             <th> Heure fin</th>
-            <th>Description</th>
+            <th>Cause</th>
             <th> Etat</th>
-
-
             <th>Action</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let demande of demandes">
-            <th scope="row"></th>
+            
             
             <td>{{ demande.type_demande }}</td>
             <td>{{ demande.date_debut }}</td>
@@ -231,37 +247,17 @@
             <td>{{ demande.heure_fin }}</td>
             <td>{{ demande.description }}</td>
             <td>{{demande.etat}}</td>
-
+           
             <td>
               <button
-              class="btn  waves-effect waves-light btn-warn btn-round"  >
-              En cours
+              class="btn  waves-effect waves-light  btn-danger btn-round" (click)="openDelete(contentDelete,demande)"
+                >
+              Supprimer
             </button>
 
             </td>
 
-            <td>
-             
-              <button
-                class="btn waves-effect waves-light btn-success btn-round"
-              >
-                Accepter
-              </button>
-              <button class="btn  waves-effect waves-light btn-info btn-round">
-                Reffuser
-              </button>
-              <button
-                class="btn mx-3 waves-effect waves-light btn-danger btn-round"
-                (click)="deleteDemande(demande)"
-              >
-                Supprimer
-              </button>
-              <button class="btn waves-effect waves-light btn-secondary btn-round">
-                Archiver
-              </button>
-              
-              
-            </td>
+            
           </tr>
         </tbody>
       </table>

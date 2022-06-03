@@ -3,16 +3,16 @@
     <div class="row align-items-center">
       <div class="col-md-8">
         <div class="page-header-title">
-          <h5 class="m-b-10">calendrier de travail</h5>
-          <p class="m-b-0">Welcome</p>
+          <h5 class="m-b-10">PV Journalier</h5>
+          <p class="m-b-0"></p>
         </div>
       </div>
       <div class="col-md-4">
         <ul class="breadcrumb-title">
           <li class="breadcrumb-item">
-            <a routerLink="/home"> <i class="fa fa-home"></i> </a>
+            <a routerLink="/home/dashboard"> <i class="fa fa-home"></i> </a>
           </li>
-          <li class="breadcrumb-item"><a href="#!"></a></li>
+          <li class="breadcrumb-item"><a href="/home/dasboard"></a></li>
         </ul>
       </div>
     </div>
@@ -114,9 +114,8 @@
 <br /><br /><br />
 
 <h3>
-  PV journalier
   <button class="btn btn-primary btn-round float-right" (click)="clickAddEvent(content)">
-    + Ajouter votre tache
+    + Ajouter tâche 
   </button>
   <div class="clearfix"></div>
 </h3>
@@ -125,7 +124,7 @@
   <table class="table table-bordered">
     <thead>
       <tr>
-        <th>Tache réalisée</th>
+        <th>Tâche réalisée</th>
         <th>Date</th>
         <th>Début</th>
         <th>Fin</th>
@@ -226,19 +225,7 @@
 
         <span class="form-bar"></span>
       </div>
-      <!-- <div
-        class="form-group"
-        [ngClass]="{
-          ' form-success': formEvent.get('heureStart')?.valid,
-          'form-danger': formEvent.get('heureStart')?.invalid
-        }"
-      >
-        <label class="float-label"><h6> Heure de début</h6></label>
-        <ngb-timepicker  formControlName="heureStart"></ngb-timepicker>
-     
-       
-        <span class="form-bar"></span>
-      </div> -->
+      
 
 
       <div
@@ -316,12 +303,12 @@
 </ng-template>
 
 
-<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+<!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
   Launch demo modal
 </button>
 
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!-- <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -339,11 +326,11 @@
       </div>
     </div>
   </div>
-</div>
+</div>  -->
 
 <ng-template #contentDelete let-modal>
   <div class="modal-header">
-    <h4 class="modal-title" id="modal-basic-title">Supprimer Etablissement</h4>
+    <h4 class="modal-title" id="modal-basic-title">Message de confirmation </h4>
     <button
       type="button"
       class="btn-close"
@@ -355,19 +342,16 @@
     <form>
    
       <div class="modal-body">
-        <p>Are you sure you want to delete these Records?</p>
-        <p class="text-warning">
-          <small>This action cannot be undone.</small>
-        </p>
+        <p>Supprimer cett tache !</p>
       </div>
       <div class="modal-footer">
         <input
           type="button"
-          class="btn btn-default"
+          class="btn btn-default btn-round"
           data-dismiss="modal"
-          value="Cancel"
+          value="Annuler"
         />
-        <input type="submit" class="btn btn-danger" (click)="deleteEvent()" value="Delete" />
+        <input type="submit" class="btn btn-danger btn-round" (click)="deleteEvent()" value="Supprimer" />
       </div>
     </form>
   </div>

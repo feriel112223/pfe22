@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { AdminGuard } from './admin.guard';
 import { LoginComponent } from './Auth/login/login.component';
 import { AdmincongesComponent } from './dashboards/adminconges/adminconges.component';
-import { AdmineventComponent } from './dashboards/adminevent/adminevent.component';
+import { AdmindashComponent } from './dashboards/admindash/admindash.component';
 import { CalendrierDeTravailComponent } from './dashboards/calendrier-de-travail/calendrier-de-travail.component';
 import { DashComponent } from './dashboards/dash/dash.component';
 import { DemandesComponent } from './dashboards/demandes/demandes.component';
@@ -23,14 +23,15 @@ const routes: Routes = [
   {path:'home',component:HomeComponent,
    children:[
     {path:'demandes',component:DemandesComponent},
-    {path:'employee',component:EmloyeeComponent,canActivate:[AdminGuard]},
+    {path:'employee',component:EmloyeeComponent},//canActivate:[AdminGuard]},
     {path:'calendrier',component:CalendrierDeTravailComponent},
     {path:'conges',component:ListeCongesComponent},
     {path:'fiche_de_paies',component:FicheDePaiesComponent},
     {path:'listedemandes',component:AdmincongesComponent},
-    {path:'liste_des_pv',component:AdmineventComponent},
+    
     {path:'presence',component:PresenceComponent},
-    {path:'dashboard',component:DashComponent},    
+    {path:'dashboard',component:DashComponent}, 
+    {path:'admindash',component:AdmindashComponent}   
    ]}]
  
     

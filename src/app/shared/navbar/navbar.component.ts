@@ -22,22 +22,22 @@ export class NavbarComponent implements OnInit {
     // console.log("heyy nav ",this.data)
   }
 
-  // toggleDropDown(){
-  //   if(this.dropDownProfil=="block"){
-  //   this.dropDownProfil="none"
-  //   }else{
-  //   this.dropDownProfil="block"
+  toggleDropDown(){
+    if(this.dropDownProfil=="block"){
+    this.dropDownProfil="none"
+    }else{
+    this.dropDownProfil="block"
 
-  //   }
-  // }
-  // toggleDropDownN(){
-  //   if(this.dropDownNotification=="block"){
-  //     this.dropDownNotification="none"
-  //     }else{
-  //     this.dropDownNotification="block"
+    }
+  }
+  toggleDropDownN(){
+    if(this.dropDownNotification=="block"){
+      this.dropDownNotification="none"
+      }else{
+      this.dropDownNotification="block"
   
-  //     }
+      }
 
-  // }
+  }
   
 }

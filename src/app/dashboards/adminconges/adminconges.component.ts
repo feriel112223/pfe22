@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { CongesService } from 'src/app/shared/services/conges.service';
 import { DemandesService } from 'src/app/shared/services/demandes.service';
+import { ToastrService } from 'ngx-toastr';
+
 
 
 @Component({
@@ -10,24 +12,48 @@ import { DemandesService } from 'src/app/shared/services/demandes.service';
 })
 export class AdmincongesComponent implements OnInit {
 listConge:any
-  constructor(private demandeServ:DemandesService) { }
+demandes: any;
+  constructor(private demandesServ: DemandesService, private toastr: ToastrService) { 
+    this.getAllDemande();
+  }
 
   ngOnInit(): void {
   }
 
 
-  getAllconge(){
-    this.demandeServ.getAllDemande().subscribe((res : any)=>{
-      this.listConge = res;
-      console.log(this.listConge);
-     
-      
+  getAllDemande(){
+    console.log("hi")
+    this.demandesServ.getAllDemande().subscribe((res : any)=>{
+      this.demandes = res;
+      console.log(res);
 
-    }),
+    },
     (err : any)=>{
       console.log(err);
       
     }
-
+    )
   }
+
+  accepter(id:any){
+this.demandesServ.accepterEtat(id).subscribe((res:any)=>{
+ console.log("ok");
+ 
+
+},(err : any)=>{
+  console.log(err);
+  
+})
+  }
+
+  refuser(id:any){
+    this.demandesServ.refuserEtat(id).subscribe((res:any)=>{
+     console.log("ok");
+     
+    
+    },(err : any)=>{
+      console.log(err);
+      
+    })
+      }
 }

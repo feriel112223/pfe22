@@ -1,6 +1,6 @@
 <ng-template  #content let-modal>
   <div class="modal-header">
-    <h6 class="modal-title" id="modal-basic-title">Détails de l'employé</h6>
+    <h6 class="modal-title" id="modal-basic-title"><b>Détails employé</b></h6>
     <button
       type="button"
       class="btn-close"
@@ -209,6 +209,11 @@
         />
         <span class="form-bar"></span>
       </div>
+      <!-- <!-- <div >
+        <label class="form-label" for="customFile">Image employé</label>
+        <input type="file"(change)="onFileChanged($event)">
+        <!-- <input type="file" class="form-control" id="customFile" />
+      </div> -->
     </form>
   </div>
   <div class="modal-footer">
@@ -240,14 +245,43 @@
     </button>
   </div>
 </ng-template>
+<ng-template #contentDelete let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Message de confirmation </h4>
+    <button
+      type="button"
+      class="btn-close"
+      aria-label="Close"
+      (click)="modal.dismiss('Cross click')"
+    ></button>
+  </div>
+  <div class="modal-body">
+    <form>
+   
+      <div class="modal-body">
+        <b>Supprimer cet employé !</b>
+        
+      </div>
+      <div class="modal-footer">
+        <input
+          type="button"
+          class="btn btn-default"
+          data-dismiss="modal"
+          value="Annuler"
+        />
+        <input type="submit" class="btn btn-danger btn-round" value="Supprimer" (click)="deleteEmployee(employee_id)"/>
+      </div>
+    </form>
+  </div>
+</ng-template>
 
 <div class="page-header">
   <div class="page-block">
     <div class="row align-items-center">
       <div class="col-md-8">
         <div class="page-header-title">
-          <h5 class="m-b-10">Employee details</h5>
-          <p class="m-b-0">Welcome</p>
+          <h5 class="m-b-10">Liste employés</h5>
+          <p class="m-b-0"></p>
         </div>
       </div>
       <div class="col-md-4">
@@ -255,7 +289,7 @@
           <li class="breadcrumb-item">
             <a routerLink="/home"> <i class="fa fa-home"></i> </a>
           </li>
-          <li class="breadcrumb-item"><a href="#!">Employee</a></li>
+          <li class="breadcrumb-item"><a href="#!">Employés</a></li>
         </ul>
       </div>
     </div>
@@ -263,7 +297,6 @@
 </div>
 <div class="card">
   <div class="card-header">
-    <h4>Liste des employés</h4>
     <span> </span>
     <div class="card-header-right">
       <ul class="list-unstyled card-option">
@@ -276,6 +309,7 @@
     </div>
   </div>
   <div class="d-flex">
+    
     <form class="d-flex p-2">
       <input
         class="form-control me-2"
@@ -304,13 +338,14 @@
       </button>
     </div>
   </div>
+            
 
+<div class="card" >
   <div class="card-block table-border-style">
     <div class="table-responsive">
       <table class="table">
         <thead>
-          <tr>
-            
+          <tr class="table-success">            
             <th>Cin</th>
             <th>Nom</th>
             <th>Prénom</th>
@@ -322,7 +357,7 @@
             <th>role</th>
 
             <th>Salaire</th>
-            <th>Num de télephone</th>
+            <th>Numéro de télephone</th>
 
             <th>Action</th>
           </tr>
@@ -353,7 +388,7 @@
               </button>
               <button
                 class="btn btn-danger mx-3 btn-round waves-effect waves-light"
-                (click)="deleteEmployee(employee)"
+                (click)="openDelete(contentDelete,employee)"
               >
                 Supprimer
               </button>
@@ -369,4 +404,4 @@
 
 
 
-<input type="text"(change)="onFileChanged($event)">
+<!-- <input type="text"(change)="onFileChanged($event)"> -->

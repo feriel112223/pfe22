@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
 
 
 @Component({
@@ -13,6 +13,7 @@ export class LoginComponent implements OnInit {
   loginUserData = {}
   data:any
   loginForm : FormGroup
+
   
 
 
@@ -21,7 +22,7 @@ export class LoginComponent implements OnInit {
       email: ['', Validators.compose([
         Validators.pattern('^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]{0,10})*@[A-Za-z0-9]+(\\.[A-Za-z0-9]{0,10})*(\\.[A-Za-z]{0,5})$'),
         Validators.required])],
-      mot_de_passe: ['', Validators.required],
+       mot_de_passe: ['', Validators.required],
     });
   }
   

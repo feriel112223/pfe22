@@ -34,6 +34,6 @@ export class EmployeeService {
     formData.append("file", data);
     console.log(formData);
 
-    return this.http.post(this.path + "/img", formData);
+    return this.http.post(this.path + "/upload-image", formData);
   }
 }

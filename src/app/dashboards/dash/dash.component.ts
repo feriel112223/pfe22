@@ -43,11 +43,20 @@ export class DashComponent implements OnInit {
             labels: ['January 2019', 'February 2019', 'March 2019', 'April 2019','juillet 2022']
         },
     });
+   
     }
+
+    
+  
+      
+  
+
+
+
   constructor(private employeeServ:EmployeeService,private toastr: ToastrService) { }
 
   ngOnInit(): void {
-    console.log("goalll  bedis ",this.data)
+    console.log("goalll  ",this.data)
     this.geteventByemployeId()
   }
 
@@ -65,6 +74,7 @@ this.event=res
       })
        
      });
+
      
      
      

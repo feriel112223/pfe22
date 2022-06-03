@@ -4,7 +4,7 @@
       <div class="col-md-8">
         <div class="page-header-title">
           <h5 class="m-b-10">liste des demandes</h5>
-          <p class="m-b-0">Welcome</p>
+          <p class="m-b-0"></p>
         </div>
       </div>
       <div class="col-md-4">
@@ -20,7 +20,6 @@
 </div>
 <div class="card">
   <div class="card-header">
-    <h2>Liste des demandes</h2>
     <span> </span>
     <div class="card-header-right">
       <ul class="list-unstyled card-option">
@@ -32,40 +31,42 @@
       </ul>
     </div>
   </div>
-  <div class="card-block table-border-style">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr>
-            <th>Nom</th>
-            <th>Prénom</th>
+  <div class="card" >
+    <div class="card-block table-border-style">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="table-success"> 
+            
             <th>Type</th>
+            <th>Date début</th>
+            <th> Date fin</th>
+            <th>Heure début</th>
+            <th> Heure fin</th>
             <th>Cause</th>
-            <th>Début</th>
-            <th>Fin</th>
-            <th>Etat</th>
+            <th> Etat</th>
             <th>Action</th>
-
           </tr>
         </thead>
         <tbody>
-          <tr class="table-warning">
-            <th scope="row">1</th>
-            <td>hhh</td>
-            <td>,,;;</td>
-            <td>mfmfm</td>
-            <td>jjjj</td>
-            <td>sans solde</td>
-            <td>en attente</td>
-
+          <tr *ngFor="let demande of demandes">
+            
+            
+            <td>{{ demande.type_demande }}</td>
+            <td>{{ demande.date_debut }}</td>
+            <td>{{ demande.date_fin }}</td>
+            <td>{{ demande.heure_debut }}</td>
+            <td>{{ demande.heure_fin }}</td>
+            <td>{{ demande.description }}</td>
+            <td> {{demande.etat}}</td>
             <td>
               <button
-                class="btn waves-effect waves-light btn-success btn-round"
+                class="btn waves-effect waves-light btn-success btn-round" (click)="accepter(demande.id)"
               >
                 Accepter
               </button>
-              <button class="btn mx-3 waves-effect waves-light btn-danger btn-round">
-                Reffuser
+              <button class="btn mx-3 waves-effect waves-light btn-danger btn-round" (click)="refuser(demande.id)" >
+                Refuser
               </button>
               <button
                 class="btn waves-effect waves-light btn-secondary btn-round"

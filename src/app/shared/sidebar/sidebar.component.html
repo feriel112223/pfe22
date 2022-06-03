@@ -19,7 +19,7 @@
     </div>
     <ul class="pcoded-item pcoded-left-item">
       
-      <li routerLinkActive="active"  routerLink="/home/presence">
+      <!-- <li routerLinkActive="active"  routerLink="/home/presence">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-timer"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
@@ -28,8 +28,15 @@
           <span class="pcoded-mcaret"></span>
         </a>
         
-      </li>
+      </li> -->
       <li routerLinkActive="active"  routerLink="/home/dashboard">
+        <a  class="waves-effect waves-dark">
+          <span class="pcoded-micon"><i class="ti-home"></i></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>Tableau de bord </b></span>
+          <span class="pcoded-mcaret"></span>
+        </a>
+      </li>
+      <li routerLinkActive="active"  routerLink="/home/admindash">
         <a  class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-home"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>dashboard</b></span>
@@ -41,14 +48,14 @@
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-calendar"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
-            >Calendrier de travail
+            >PV Journalier
           </span>
           <span class="pcoded-mcaret"></span>
         </a>
         
       </li>
       
-      <li routerLinkActive="active"  routerLink="/home/conges">
+      <!-- <li routerLinkActive="active"  routerLink="/home/conges">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
@@ -57,27 +64,18 @@
           <span class="pcoded-mcaret"></span>
         </a>
         
-      </li>
+      </li> -->
       <li routerLinkActive="active"  routerLink="/home/listedemandes">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
-            >Liste des demandes
+            >Liste demandes
           </span>
           <span class="pcoded-mcaret"></span>
         </a>
         
       </li>
-      <li routerLinkActive="active"  routerLink="/home/liste_des_pv">
-        <a class="waves-effect waves-dark">
-          <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
-          <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
-            >Les PV journaliers
-          </span>
-          <span class="pcoded-mcaret"></span>
-        </a>
-        
-      </li>
+      
     </ul>
     <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" menu-title-theme="theme1">Gestion RH 
     </div>
@@ -85,14 +83,14 @@
       <li routerLinkActive="active"  routerLink="/home/demandes">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-clipboard"></i></span>
-          <span class="pcoded-mtext" data-i18n="nav.dash.main">Demandes des congés</span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Demandes congés</span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
       <li routerLinkActive="active"  routerLink="/home/employee">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-user"></i></span>
-          <span class="pcoded-mtext" data-i18n="nav.dash.main">Employee</span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Employe</span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
@@ -104,7 +102,7 @@
       <li routerLinkActive="active"  routerLink="/home/fiche_de_paies">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-files"></i></span>
-          <span class="pcoded-mtext" data-i18n="nav.dash.main">Fiches de paies </span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main">Fiches de paie </span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
