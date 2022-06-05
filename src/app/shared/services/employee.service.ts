@@ -29,11 +29,11 @@ export class EmployeeService {
   }
 
 
-  uploadImageAdmin(data: any) {
+  uploadImageAdmin(data: any , id:number) {
     const formData = new FormData();
     formData.append("file", data);
     console.log(formData);
 
-    return this.http.post(this.path + "/upload-image", formData);
+    return this.http.post(this.path + "/image/" +id , formData);
   }
 }

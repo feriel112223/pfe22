@@ -40,7 +40,7 @@ export class DashComponent implements OnInit {
               borderColor: "#007ee7",
               fill: true,
           }],
-            labels: ['January 2019', 'February 2019', 'March 2019', 'April 2019','juillet 2022']
+              labels: ['Janvier ', 'Février', 'Mars', 'Avril','Mai','juin','juillet','aout','Septembre','Octobre','Novembre','Decembre']
         },
     });
    

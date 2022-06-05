@@ -1,0 +1,68 @@
+<div class="page-header">
+    <div class="page-block">
+      <div class="row align-items-center">
+        <div class="col-md-8">
+          <div class="page-header-title">
+            <h5 class="m-b-10">liste des demandes</h5>
+            <p class="m-b-0"></p>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <ul class="breadcrumb-title">
+            <li class="breadcrumb-item">
+              <a routerLink="/home"> <i class="fa fa-home"></i> </a>
+            </li>
+            <li class="breadcrumb-item"><a href="#!"></a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="card">
+    <div class="card-header">
+      <span> </span>
+      <div class="card-header-right">
+        <ul class="list-unstyled card-option">
+          <li><i class="fa fa fa-wrench open-card-option"></i></li>
+          <li><i class="fa fa-window-maximize full-card"></i></li>
+          <li><i class="fa fa-minus minimize-card"></i></li>
+          <li><i class="fa fa-refresh reload-card"></i></li>
+          <li><i class="fa fa-trash close-card"></i></li>
+        </ul>
+      </div>
+    </div>
+    <div class="card" >
+      <div class="card-block table-border-style">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="table-success"> 
+              
+              <th>Type</th>
+              <th>Date début</th>
+              <th> Date fin</th>
+              <th>Heure début</th>
+              <th> Heure fin</th>
+              <th>Cause</th>
+              <th> Etat</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let demande of demandes">
+              
+              
+              <td>{{ demande.type_demande }}</td>
+              <td>{{ demande.date_debut }}</td>
+              <td>{{ demande.date_fin }}</td>
+              <td>{{ demande.heure_debut }}</td>
+              <td>{{ demande.heure_fin }}</td>
+              <td>{{ demande.description }}</td>
+              <td> {{demande.etat}}</td>
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+  

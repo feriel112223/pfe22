@@ -209,11 +209,12 @@
         />
         <span class="form-bar"></span>
       </div>
-      <!-- <!-- <div >
+     
+      <div >
         <label class="form-label" for="customFile">Image employé</label>
-        <input type="file"(change)="onFileChanged($event)">
-        <!-- <input type="file" class="form-control" id="customFile" />
-      </div> -->
+        <input type="file" class="form-control" id="customFile" (change)="onFileChanged($event)">
+         <!-- <input type="file" class="form-control" id="customFile" />  -->
+      </div>
     </form>
   </div>
   <div class="modal-footer">
@@ -358,6 +359,8 @@
 
             <th>Salaire</th>
             <th>Numéro de télephone</th>
+            <th>image</th>
+
 
             <th>Action</th>
           </tr>
@@ -378,6 +381,8 @@
 
             <td>{{ employee.salaire }}</td>
             <td>{{ employee.tel }}</td>
+            <td>{{ employee.image }}</td>
+
             <td>
               <button
                 style="color: aliceblue"

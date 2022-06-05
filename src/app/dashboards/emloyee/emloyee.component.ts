@@ -23,7 +23,7 @@ export class EmloyeeComponent implements OnInit {
   showUpdate : boolean = false;
   closeResult:any
   imageSrc: string = '';
-  imageFile:any
+  image:any =['']
 
   role= JSON.parse(localStorage.getItem("user")||'').role;
 
@@ -54,6 +54,7 @@ export class EmloyeeComponent implements OnInit {
        salaire:['',Validators.required],
        tel :['',Validators.required],
        role :['EMPLOYE',Validators.required],
+       image:['']
        
        
 
@@ -71,16 +72,16 @@ export class EmloyeeComponent implements OnInit {
    onFileChanged(event:any) {
     // for (const property in event.target.files) {
     //   this.imageFile.push(property);
-    //   console.log(this.imageFile);
+    //   console.log(this.image);
     // }
     const files = event.target.files;
     if (files)
       for (const f of files) {
-        this.imageFile.push(f);
+        this.image.push(f);
       }
     // console.log("heloo", event.target.files);
     // this.imageFile.push(event.target.files[0]);
-    console.log(this.imageFile);
+    console.log(this.image);
   }
 
    clickAddEmployee(content:any){

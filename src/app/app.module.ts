@@ -15,7 +15,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './dashboards/home/home.component';
 import { CalendrierDeTravailComponent } from './dashboards/calendrier-de-travail/calendrier-de-travail.component';
 
-import { ListeCongesComponent } from './dashboards/liste-conges/liste-conges.component';
 import {Ng2SearchPipeModule} from 'ng2-search-filter';
 import {FormsModule} from '@angular/forms';
 import { FicheDePaiesComponent } from './dashboards/fiche-de-paies/fiche-de-paies.component';
@@ -35,6 +34,7 @@ import { PresenceComponent } from './dashboards/presence/presence.component';
 import { AdmindashComponent } from './dashboards/admindash/admindash.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
+import { ArchiveComponent } from './dashboards/archive/archive.component';
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -46,12 +46,12 @@ registerLocaleData(localeFr);
     DemandesComponent,
     HomeComponent,
     CalendrierDeTravailComponent,
-    ListeCongesComponent,
     FicheDePaiesComponent,
     DashComponent,
     AdmincongesComponent,
     PresenceComponent,
     AdmindashComponent,
+    ArchiveComponent,
   ],
 
   imports: [
