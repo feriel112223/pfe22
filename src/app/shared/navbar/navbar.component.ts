@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthService } from 'src/app/shared/services/auth.service';
 
 
 @Component({
@@ -14,12 +16,15 @@ export class NavbarComponent implements OnInit {
   
   
 
-  constructor() { }
+  constructor(private auth:AuthService,private router:Router) { }
   dropDownProfil='none';
   dropDownNotification='none';
   ngOnInit(): void {
 
     // console.log("heyy nav ",this.data)
+  }
+  navigateto(){
+    this.router.navigate(['/home/listedemandes'])
   }
 
   toggleDropDown(){
@@ -38,6 +43,10 @@ export class NavbarComponent implements OnInit {
   
       }
 
+  }
+  
+  logout() {
+    this.auth.logout();
   }
   
 }

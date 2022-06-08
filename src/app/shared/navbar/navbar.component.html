@@ -38,12 +38,12 @@
                         </li>
                     </ul>
                     <ul class="nav-right">
-                        <li  (click)="toggleDropDownN()" class="header-notification">
+                        <li  (click)="navigateto()"  *ngIf="role=='ADMIN'"  class="header-notification">
                             <a    class="waves-effect waves-light">
                                 <i class="ti-bell"></i>
                                 <span class="badge bg-c-red"></span>
                             </a>
-                            <ul class="show-notification" [ngStyle]="{'display': dropDownNotification}" >
+                            <ul class="show-notification"  [ngStyle]="{'display': dropDownNotification}" >
                                 <li>
                                     <h4>Notifications</h4>
                                 </li>
@@ -61,7 +61,7 @@
                                 
                                 <li class="waves-effect waves-light" routerLinkActive="active">
                                     <a routerLink="/login">
-                                        <i class="ti-layout-sidebar-left"></i> Déconnexion 
+                                        <i class="ti-layout-sidebar-left" (click)="logout()"></i> Déconnexion 
                                     </a>
                                 </li>
                             </ul>

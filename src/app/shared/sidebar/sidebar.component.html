@@ -29,20 +29,22 @@
         </a>
         
       </li> -->
-      <li routerLinkActive="active"  routerLink="/home/dashboard">
+      <li routerLinkActive="active"  *ngIf="role=='EMPLOYE'" routerLink="/home/dashboard">
         <a  class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-home"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>Tableau de bord </b></span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
-      <li routerLinkActive="active"  routerLink="/home/admindash">
+      
+      <li routerLinkActive="active" *ngIf="role=='ADMIN'"outerLink="/home/admindash">
         <a  class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-home"></i></span>
-          <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>dashboard</b></span>
+          <span class="pcoded-mtext" data-i18n="nav.dash.main"><b>Tableau de bord</b></span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
+     
       
       <li routerLinkActive="active"  routerLink="/home/calendrier">
         <a class="waves-effect waves-dark">
@@ -55,6 +57,7 @@
         
       </li>
       
+      
       <!-- <li routerLinkActive="active"  routerLink="/home/conges">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
@@ -65,7 +68,7 @@
         </a>
         
       </li> -->
-      <li routerLinkActive="active"  routerLink="/home/listedemandes">
+      <li routerLinkActive="active" *ngIf="role=='ADMIN'" routerLink="/home/listedemandes">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-list-ol"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.basic-components.main"
@@ -77,17 +80,17 @@
       </li>
       
     </ul>
-    <div class="pcoded-navigation-label" data-i18n="nav.category.navigation" menu-title-theme="theme1">Gestion RH 
-    </div>
+    
     <ul class="pcoded-item pcoded-left-item" > 
-      <li routerLinkActive="active"  routerLink="/home/demandes">
+      <li routerLinkActive="active"  *ngIf="role=='EMPLOYE'" routerLink="/home/demandes">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-clipboard"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main">Demandes congés</span>
           <span class="pcoded-mcaret"></span>
         </a>
       </li>
-      <li routerLinkActive="active"  routerLink="/home/employee">
+      
+      <li routerLinkActive="active" *ngIf="role=='ADMIN'" routerLink="/home/employee">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-user"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main">Employe</span>
@@ -108,7 +111,7 @@
       </li>
     </ul>  
     <ul class="pcoded-item pcoded-left-item" > 
-      <li routerLinkActive="active"  routerLink="/home/archiveDemande">
+      <li routerLinkActive="active" *ngIf="role=='ADMIN'" routerLink="/home/archiveDemande">
         <a class="waves-effect waves-dark">
           <span class="pcoded-micon"><i class="ti-files"></i></span>
           <span class="pcoded-mtext" data-i18n="nav.dash.main">Archive demande </span>

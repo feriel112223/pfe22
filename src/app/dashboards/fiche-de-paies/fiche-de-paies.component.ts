@@ -8,7 +8,7 @@ import { Component, OnInit,VERSION } from '@angular/core';
 })
 export class FicheDePaiesComponent implements OnInit {
   showForm=false;
-  
+   role= JSON.parse(localStorage.getItem("user")||'').role;
 
   constructor() { }
  

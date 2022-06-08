@@ -113,68 +113,78 @@
 
 <br /><br /><br />
 
-<h3>
-  <button class="btn btn-primary btn-round float-right" (click)="clickAddEvent(content)">
-    + Ajouter tâche 
+<div  *ngIf="role=='EMPLOYE'">
+  <h3>
+    <button class="btn btn-primary btn-round float-right" (click)="clickAddEvent(content)">
+      + Ajouter tâche 
+    </button>
+    <button
+    printTitle="Fiche de paie"
+    printSectionId="print-section"
+    ngxPrint
+    class="btn btn-round waves-effect waves-light"
+    style="background-color: pink"
+  >
+    Imprimer
   </button>
-  <div class="clearfix"></div>
-</h3>
-
-<div class="table-responsive">
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <th>Tâche réalisée</th>
-        <th>Date</th>
-        <th>Début</th>
-        <th>Fin</th>
-        <th>Action</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr *ngFor="let event of calendarEvent">
-        <td>
-          <span  type="text"
-      class="form-control"
-      
-      (keyup)="refresh.next()"> {{event.event}} </span>
-         </td>
-         <td>
-          <span  type="text"
+    <div class="clearfix"></div>
+  </h3>
+  <div id="print-section">
+    <div class="table-responsive">
+      <table class="table table-bordered">
+        <thead>
+          <tr>
+            <th>Tâche</th>
+            <th>Date</th>
+            <th>Début</th>
+            <th>Fin</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <tr *ngFor="let event of calendarEvent">
+            <td>
+              <span  type="text"
           class="form-control"
           
-          (keyup)="refresh.next()"> {{event.dateEvent}} </span>
-      </td>
+          (keyup)="refresh.next()"> {{event.event}} </span>
+             </td>
+             <td>
+              <span  type="text"
+              class="form-control"
+              
+              (keyup)="refresh.next()"> {{event.dateEvent}} </span>
+          </td>
+        <td>  <span  type="text"
+          class="form-control"
+          
+          (keyup)="refresh.next()"> {{event.heureStart}} </span>
          
      
-         
-    
-    <td>  <span  type="text"
+     </td>
+     <td>  <span  type="text"
       class="form-control"
       
-      (keyup)="refresh.next()"> {{event.heureStart}} </span>
+      (keyup)="refresh.next()"> {{event.heureEnd}} </span>
      
+    
+    </td>
+    
+    
+    
+            <td>
+              <button class="btn btn-danger btn-round" (click)="openDelete(contentDelete,event)">
+                Supprimer
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
  
- </td>
- <td>  <span  type="text"
-  class="form-control"
-  
-  (keyup)="refresh.next()"> {{event.heureEnd}} </span>
- 
-
-</td>
-
-
-
-        <td>
-          <button class="btn btn-danger btn-round" (click)="openDelete(contentDelete,event)">
-            Supprimer
-          </button>
-        </td>
-      </tr>
-    </tbody>
-  </table>
 </div>
 
 
@@ -301,6 +311,7 @@
     </button>  
   </div>
 </ng-template>
+
 
 
 <!-- <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">

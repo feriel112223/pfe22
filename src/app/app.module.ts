@@ -35,6 +35,9 @@ import { AdmindashComponent } from './dashboards/admindash/admindash.component';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import { ArchiveComponent } from './dashboards/archive/archive.component';
+// import jsPDF from 'jspdf';
+// import 'jspdf-autotable';
+
 registerLocaleData(localeFr);
 @NgModule({
   declarations: [
@@ -74,7 +77,8 @@ registerLocaleData(localeFr);
     ChartsModule,
     NgxPrintModule,
     MatFormFieldModule,
-    MatIconModule
+    MatIconModule,
+   
     
   ],
   providers: [],

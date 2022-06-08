@@ -275,7 +275,6 @@
     </form>
   </div>
 </ng-template>
-
 <div class="page-header">
   <div class="page-block">
     <div class="row align-items-center">
@@ -327,6 +326,10 @@
         Chercher
       </button>
     </form>
+    <button printTitle="Liste des employés" printSectionId="print-section" ngxPrint class="btn btn-round waves-effect waves-light" style="background-color: pink"
+    >
+      Imprimer liste 
+    </button>
     <div class="ml-auto p-2">
       <button
         (click)="clickAddEmployee(content)"
@@ -335,75 +338,76 @@
         data-bs-target="#exampleModal"
         class="btn btn-primary btn-round"
       >
-        + Nouveau Employé
+        + Ajouter Employé
       </button>
     </div>
   </div>
             
-
-<div class="card" >
-  <div class="card-block table-border-style">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr class="table-success">            
-            <th>Cin</th>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Sexe</th>
-            <th>Date de naissance</th>
-            <th>E-mail</th>
-            <th>Mot de passe</th>
-            <th>Grade</th>
-            <th>role</th>
-
-            <th>Salaire</th>
-            <th>Numéro de télephone</th>
-            <th>image</th>
-
-
-            <th>Action</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr class="table-active" *ngFor="let employee of employees">
-            
-            <td>{{ employee.cin }}</td>
-            <td>{{ employee.Nom }}</td>
-            <td>{{ employee.Prenom }}</td>
-            <td>{{ employee.sexe }}</td>
-            <td>{{ employee.date_nais }}</td>
-            <td>{{ employee.email }}</td>
-            <td>{{ employee.mot_de_passe }}</td>
-            <td>{{ employee.grade }}</td>
-            <td>{{ employee.role }}</td>
-
-            <td>{{ employee.salaire }}</td>
-            <td>{{ employee.tel }}</td>
-            <td>{{ employee.image }}</td>
-
-            <td>
-              <button
-                style="color: aliceblue"
-                class="btn btn-info btn-round waves-effect waves-light"
-                (click)="onUpdate(employee,content)"
-              >
-                Modifier
-              </button>
-              <button
-                class="btn btn-danger mx-3 btn-round waves-effect waves-light"
-                (click)="openDelete(contentDelete,employee)"
-              >
-                Supprimer
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <div id="print-section">
+    <div class="card" >
+      <div class="card-block table-border-style">
+        <div class="table-responsive">
+          <table class="table">
+            <thead>
+              <tr class="table-success">            
+                <th>Cin</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Sexe</th>
+                <th>Date de naissance</th>
+                <th>E-mail</th>
+                <th>Mot de passe</th>
+                <th>Grade</th>
+                <th>role</th>
+    
+                <th>Salaire</th>
+                <th>Numéro de télephone</th>
+    
+                <th>Action</th>
+              </tr>
+            </thead>
+    
+            <tbody>
+              <tr  *ngFor="let employee of employees">
+                
+                <td>{{ employee.cin }}</td>
+                <td>{{ employee.Nom }}</td>
+                <td>{{ employee.Prenom }}</td>
+                <td>{{ employee.sexe }}</td>
+                <td>{{ employee.date_nais }}</td>
+                <td>{{ employee.email }}</td>
+                <td>{{ employee.mot_de_passe }}</td>
+                <td>{{ employee.grade }}</td>
+                <td>{{ employee.role }}</td>
+    
+                <td>{{ employee.salaire }}</td>
+                <td>{{ employee.tel }}</td>
+    
+                <td>
+                  <button
+                    style="color: aliceblue"
+                    class="btn btn-info btn-round waves-effect waves-light"
+                    (click)="onUpdate(employee,content)"
+                  >
+                    Modifier
+                  </button>
+                  <button
+                    class="btn btn-danger mx-3 btn-round waves-effect waves-light"
+                    (click)="openDelete(contentDelete,employee)"
+                  >
+                    Supprimer
+                  </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
   </div>
-</div>
+ 
+
+
 
 
 

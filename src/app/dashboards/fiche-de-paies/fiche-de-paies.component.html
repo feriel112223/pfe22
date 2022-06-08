@@ -10,15 +10,13 @@
       <div class="col-md-4">
         <ul class="breadcrumb-title">
           <li class="breadcrumb-item">
-            <a routerLink="/home"> <i class="fa fa-home"></i> </a>
           </li>
-          <li class="breadcrumb-item"><a href="#!">Employee</a></li>
         </ul>
       </div>
     </div>
   </div>
 </div>
-<div id="print-section">
+<div  *ngIf="role=='EMPLOYE'" id="print-section">
   <div class="card" >
     <div class="card-block table-border-style">
       <div class="table-responsive">
@@ -50,6 +48,33 @@
                 >
                   Consulter
                 </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div   *ngIf="role=='ADMIN'">
+  <div class="card" >
+    <div class="card-block table-border-style">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="table-success">
+             
+              <th><b>Nom Prénom</b> </th>
+             
+              <th><b>Fiche</b> </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td></td>
+              <td>
+                
               </td>
             </tr>
           </tbody>

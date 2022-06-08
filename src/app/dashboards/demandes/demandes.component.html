@@ -205,6 +205,10 @@
     <form class="d-flex p-2">
      
     </form>
+    <button printTitle="Liste des employés" printSectionId="print-section" ngxPrint class="btn btn-round waves-effect waves-light" style="background-color: pink"
+    >
+      Imprimer liste 
+    </button>
     <div class="ml-auto p-2">
       <button
       (click)="clickAddDemandes(content)"
@@ -214,53 +218,56 @@
         data-bs-target="#exampleModal"
         class="btn btn-primary btn-round"
       >
-        + Nouvelle demande
+        + Ajouter demande
       </button>
     </div>
   </div>
             
 
-<div class="card" >
-  <div class="card-block table-border-style">
-    <div class="table-responsive">
-      <table class="table">
-        <thead>
-          <tr class="table-success">
-            <th>Type</th>
-            <th>Date début</th>
-            <th> Date fin</th>
-            <th>Heure début</th>
-            <th> Heure fin</th>
-            <th>Cause</th>
-            <th> Etat</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let demande of demandes">
-            
-            
-            <td>{{ demande.type_demande }}</td>
-            <td>{{ demande.date_debut }}</td>
-            <td>{{ demande.date_fin }}</td>
-            <td>{{ demande.heure_debut }}</td>
-            <td>{{ demande.heure_fin }}</td>
-            <td>{{ demande.description }}</td>
-            <td>{{demande.etat}}</td>
-           
-            <td>
-              <button
-              class="btn  waves-effect waves-light  btn-danger btn-round" (click)="openDelete(contentDelete,demande)"
-                >
-              Supprimer
-            </button>
 
-            </td>
-
-            
-          </tr>
-        </tbody>
-      </table>
+<div id="print-section">
+  <div class="card" >
+    <div class="card-block table-border-style">
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr class="table-success">
+              <th>Type</th>
+              <th>Date début</th>
+              <th> Date fin</th>
+              <th>Heure début</th>
+              <th> Heure fin</th>
+              <th>Cause</th>
+              <th> Etat</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let demande of demandes">
+              
+              
+              <td>{{ demande.type_demande }}</td>
+              <td>{{ demande.date_debut }}</td>
+              <td>{{ demande.date_fin }}</td>
+              <td>{{ demande.heure_debut }}</td>
+              <td>{{ demande.heure_fin }}</td>
+              <td>{{ demande.description }}</td>
+              <td>{{demande.etat}}</td>
+             
+              <td>
+                <button
+                class="btn  waves-effect waves-light  btn-danger btn-round" (click)="openDelete(contentDelete,demande)"
+                  >
+                Supprimer
+              </button>
+  
+              </td>
+  
+              
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 </div>

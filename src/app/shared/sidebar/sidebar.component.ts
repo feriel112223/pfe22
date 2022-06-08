@@ -9,6 +9,7 @@ export class SidebarComponent implements OnInit {
   id= JSON.parse(localStorage.getItem("user")||'').id;
   nom= JSON.parse(localStorage.getItem("user")||'').Nom;
   prenom= JSON.parse(localStorage.getItem("user")||'').Prenom;
+  role= JSON.parse(localStorage.getItem("user")||'').role;
   
 
   constructor() { }

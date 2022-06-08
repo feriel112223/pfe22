@@ -27,6 +27,8 @@ import {
 } from 'angular-calendar';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CalendrierService } from 'src/app/shared/services/calendrier.service';
+import { EmployeeService } from 'src/app/shared/services/employee.service';
+
 const colors: any = {
   red: {
     primary: '#ad2121',
@@ -49,10 +51,16 @@ const colors: any = {
 })
 export class CalendrierDeTravailComponent implements OnInit {
   showForm=false;
+  event:any
+  dataEvent:any
+  idEmploye= JSON.parse(localStorage.getItem("user")||'').id;
   closeResult:any
   Event_id :any
   testJour=false;
+  evt:any = []
+  element:any
   disable : any
+  datepipe:any
   locale: string = 'fr';
   jourFerie=["2022-01-01","2022-03-20","2022-04-09","2022-05-01","2022-07-25","2022-08-13","2022-10-15","2022-12-17"
   ]
@@ -115,9 +123,10 @@ export class CalendrierDeTravailComponent implements OnInit {
   ];
 
   activeDayIsOpen: boolean = true;
+  role= JSON.parse(localStorage.getItem("user")||'').role;
 
   constructor(private modalService: NgbModal,private formbuilder:FormBuilder
-    ,private calendrierServ:CalendrierService,private toastr: ToastrService,) {
+    ,private calendrierServ:CalendrierService,private toastr: ToastrService,private employeeServ:EmployeeService) {
     this.formEvent = this.formbuilder.group({
 
       dateEvent :['', Validators.required],
@@ -130,7 +139,8 @@ export class CalendrierDeTravailComponent implements OnInit {
 
  
 
-  dayClicked({ date, events }: { date: Date; events: CalendarEvent[] }): void {
+  dayClicked({ date, events}: { date: Date; events: CalendarEvent[] }): void {
+    
     if (isSameMonth(date, this.viewDate)) {
       if (
         (isSameDay(this.viewDate, date) && this.activeDayIsOpen === true) ||
@@ -142,16 +152,37 @@ export class CalendrierDeTravailComponent implements OnInit {
       }
       this.viewDate = date;
     }
+
+
   }
 
   getAllEvent(){
     this.calendrierServ.getEvent().subscribe((res : any)=>{
       this.calendarEvent = res;
       console.log(res);
+      let evt = []
       this.calendarEvent.forEach((element:any) => {
-        this.titleEvent.push(element.event)
+        evt.push({
+          heureStart: element.heureStart,
+          heureEnd: element.heureEnd,
+          dateEvent :element.dateEvent,
+          title: element.event,
+          color: colors.blue,
+          // actions: this.calendarEvent,
+          allDay: true,
+          resizable: {
+            beforeStart: true,
+            afterEnd: true,
+          },
+          draggable: true,
+        })
+        // this.titleEvent.push(element.event)
       });
-      console.log("hhhhhhhhhh",this.titleEvent);
+
+
+      this.events = evt
+      console.log("hhh",this.evt)
+      // console.log("hhhhhhhhhh",this.titleEvent);
       
 
     }),
@@ -312,7 +343,7 @@ else{
     })
   }
 
- 
+  
 
  
 
@@ -344,6 +375,10 @@ else{
       return `with: ${reason}`;
     }
   }
+  
+
+ 
+
   openDelete(content: any, element: any) {
     this.Event_id = element.id;
     this.modalService
@@ -357,4 +392,73 @@ else{
         }
       );
      
-}}
+}
+
+
+// geteventByemployeId(){
+//   this.employeeServ.getEventByid(this.idEmploye)
+//   .subscribe(res=>{
+// this.event=res
+//    console.log(res);
+
+//    this.event.forEach((element:any) => {
+//     this.dataEvent.push({
+//       dateEvent:element.dateEvent,
+   
+//       heureTravail: element.heureEnd-element.heureStart
+//     })
+     
+//    });
+
+   
+   
+   
+    
+//   })
+// }
+
+// exportPdfPrime(shedule) {
+//   const cols = [
+//     { dataKey: 'event', title: 'tache' },
+//     { dataKey: 'dateEvent', title: 'date' },
+//     { dataKey: 'heureStart', title: ' debut' },
+//     { dataKey: 'heureEnd', title: ' fin' },
+    
+//   ];
+//   var shadowSchedule = shedule.emploiCec.ligneEmploiCecs.map((elem) => ({
+//     date: this.datepipe.transform(new Date(elem.heureDebut), 'yyyy-MM-dd'),
+//     HourStart: this.datepipe.transform(new Date(elem.heureDebut), 'h:mm '),
+//     HourEnd: this.datepipe.transform(new Date(elem.heureFin), 'h:mm '),
+//     professeur: elem.professeur.nom + ' ' + elem.professeur.prenom,
+//     sousModule: elem.sousModuleCec.titre,
+//   }));
+
+//   // const doc = new jsPDF();
+//   const doc = new jsPDF('p', 'pt');
+//   var width = doc.internal.pageSize.getWidth();
+//   doc.text(this.formEvent.controls.cec.value.titre, width / 2, 50, {
+//     align: 'center',
+//   });
+//   doc.text(shedule.titre, 70, 120, {
+//     align: 'left',
+//   });
+//   //  doc.text("Date:", width/2, 100, { align: 'center' });
+
+//   // doc.text("Date:" +new Date(this.shedule.heureDebut), width/2, 170, { align: 'center' });
+//   doc['autoTable'](cols, shadowSchedule, {
+//     startY: 150,
+//     styles: {
+//       fontSize: 12,
+//     },
+//   });
+//   doc.save('pv_+' + this.formEvent.controls.cec.value.titre + '.pdf');
+// }
+
+
+
+
+
+
+
+
+}

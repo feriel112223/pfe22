@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/shared/services/auth.service';
 import { FormBuilder, FormGroup, Validators,FormControl } from '@angular/forms';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -17,7 +18,7 @@ export class LoginComponent implements OnInit {
   
 
 
-  constructor(private auth:AuthService,private formbuilder: FormBuilder,) { 
+  constructor(private auth:AuthService,private formbuilder: FormBuilder,private router:Router,) { 
     this.loginForm = this.formbuilder.group({
       email: ['', Validators.compose([
         Validators.pattern('^[_A-Za-z0-9-]+(\\.[_A-Za-z0-9-]{0,10})*@[A-Za-z0-9]+(\\.[A-Za-z0-9]{0,10})*(\\.[A-Za-z]{0,5})$'),
@@ -39,10 +40,20 @@ export class LoginComponent implements OnInit {
       
       this.data=res
       this.auth.saveToken(this.data)
+      if(this.data.role=='EMPLOYE')
+      this.router.navigate(['/home/dashboard'])
+      else if(this.data.role=='ADMIN')
+      this.router.navigate(['/home/admindash'])
+
+      
 
       // console.log(res);
       
-    }), (err:any) => console.log(err)}
+    }), (err:any) => {this.router.navigate(['/login'])
+
+    console.log(err)}
+    }
+
      
       
       

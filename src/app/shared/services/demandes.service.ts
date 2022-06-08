@@ -26,7 +26,7 @@ export class DemandesService {
     return this.http.put<any>(this.path + "/conges/" + id, data);
   }
   accepterEtat( id: number) {
-    return this.http.put<any>( this.path + "/conges/refuse/" + id ,"");
+    return this.http.put<any>( this.path + "/conges/accepte/" + id ,"");
   }
   refuserEtat( id: number) {
     return this.http.put<any>(this.path + "/conges/refuse/" + id ,"");
