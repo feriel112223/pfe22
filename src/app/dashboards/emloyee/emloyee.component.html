@@ -210,9 +210,9 @@
         <span class="form-bar"></span>
       </div>
      
-      <div >
-        <label class="form-label" for="customFile">Image employé</label>
-        <input type="file" class="form-control" id="customFile" (change)="onFileChanged($event)">
+      <div>
+        <label class="form-label" for="image">Image employé</label>
+        <input type="file" class="form-control" formControlName="image" name="image" id="image" (change)="onFileChanged($event)">
          <!-- <input type="file" class="form-control" id="customFile" />  -->
       </div>
     </form>
@@ -310,7 +310,7 @@
   </div>
   <div class="d-flex">
     
-    <form class="d-flex p-2">
+    <!-- <form class="d-flex p-2">
       <input
         class="form-control me-2"
         type="search"
@@ -325,12 +325,21 @@
       >
         Chercher
       </button>
-    </form>
-    <button printTitle="Liste des employés" printSectionId="print-section" ngxPrint class="btn btn-round waves-effect waves-light" style="background-color: pink"
+    </form> -->
+    <div class="form-group">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Chercher..."
+        [(ngModel)]="filterTerm"
+      />
+    </div>
+    
+    <div class="ml-auto p-2">
+      <button printTitle="Liste des employés" printSectionId="print-section" ngxPrint class="btn btn-round waves-effect waves-light mx-3" style="background-color: pink"
     >
       Imprimer liste 
     </button>
-    <div class="ml-auto p-2">
       <button
         (click)="clickAddEmployee(content)"
         type="button"
@@ -356,9 +365,9 @@
                 <th>Sexe</th>
                 <th>Date de naissance</th>
                 <th>E-mail</th>
-                <th>Mot de passe</th>
+                <!-- <th>Mot de passe</th> -->
                 <th>Grade</th>
-                <th>role</th>
+                <!-- <th>role</th> -->
     
                 <th>Salaire</th>
                 <th>Numéro de télephone</th>
@@ -368,7 +377,7 @@
             </thead>
     
             <tbody>
-              <tr  *ngFor="let employee of employees">
+              <tr  *ngFor="let employee of employees | filter: filterTerm">
                 
                 <td>{{ employee.cin }}</td>
                 <td>{{ employee.Nom }}</td>
@@ -376,9 +385,9 @@
                 <td>{{ employee.sexe }}</td>
                 <td>{{ employee.date_nais }}</td>
                 <td>{{ employee.email }}</td>
-                <td>{{ employee.mot_de_passe }}</td>
+                <!-- <td>{{ employee.mot_de_passe }}</td> -->
                 <td>{{ employee.grade }}</td>
-                <td>{{ employee.role }}</td>
+                <!-- <td>{{ employee.role }}</td> -->
     
                 <td>{{ employee.salaire }}</td>
                 <td>{{ employee.tel }}</td>

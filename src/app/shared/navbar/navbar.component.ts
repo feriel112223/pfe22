@@ -13,6 +13,8 @@ export class NavbarComponent implements OnInit {
   role= JSON.parse(localStorage.getItem("user")||'').role;
   nom= JSON.parse(localStorage.getItem("user")||'').Nom;
   prenom= JSON.parse(localStorage.getItem("user")||'').Prenom;
+  image= JSON.parse(localStorage.getItem("user")||'').image;
+
   
   
 

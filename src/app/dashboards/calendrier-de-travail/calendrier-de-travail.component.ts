@@ -162,6 +162,7 @@ export class CalendrierDeTravailComponent implements OnInit {
       console.log(res);
       let evt = []
       this.calendarEvent.forEach((element:any) => {
+       
         evt.push({
           heureStart: element.heureStart,
           heureEnd: element.heureEnd,
@@ -175,22 +176,19 @@ export class CalendrierDeTravailComponent implements OnInit {
             afterEnd: true,
           },
           draggable: true,
+          
         })
         // this.titleEvent.push(element.event)
       });
-
-
       this.events = evt
+    this.refresh.next();
       console.log("hhh",this.evt)
-      // console.log("hhhhhhhhhh",this.titleEvent);
       
-
+      // console.log("hhhhhhhhhh",this.titleEvent);
     }),
     (err : any)=>{
-      console.log(err);
-      
+      console.log(err); 
     }
-    
   }
   handleEvent(action: string, event: CalendarEvent): void {
     this.modalData = { event, action };
@@ -236,13 +234,18 @@ postEvent(){
   
   this.jourFerie.forEach((element:any)=>{
     if (da==element)
+    // this.toastr.error("c'est un jour férié");
     alert("c'est un jour férié")
+
+    
     //console.log("jour ferié")
     this.testJour=true
   
   })
   if(this.disable)
+  
     alert("veriifer vos informations")
+
   //  else  if(jNow!=jEvent && mNow!=mEvent && yNow!=yEvent )
   //   alert("veriifer vos informations ")
 else{

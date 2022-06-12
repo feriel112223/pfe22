@@ -24,6 +24,7 @@ export class EmloyeeComponent implements OnInit {
   closeResult:any
   imageSrc: string = '';
   image:any =['']
+  filterTerm!: string;
 
   role= JSON.parse(localStorage.getItem("user")||'').role;
 
@@ -54,7 +55,7 @@ export class EmloyeeComponent implements OnInit {
        salaire:['',Validators.required],
        tel :['',Validators.required],
        role :['EMPLOYE',Validators.required],
-       image:['']
+       image:[null,Validators.required]
        
        
 

@@ -27,7 +27,6 @@ dateAccepte:any=[]
 dateAttente:any=[]
   dataEvent :any=[]
   idEmploye= JSON.parse(localStorage.getItem("user")||'').id;
-
     canvas: any;
     ctx: any;
     @ViewChild('mychart') mychart:any;
@@ -84,18 +83,25 @@ dateAttente:any=[]
     this.geteventByemployeId()
     this.chart()
   }
+
+
+
+
+
+
   chart(){
     const ctx = 'myChart';
     const myChart = new Chart(ctx, {
       type: 'bar',
 
       data: {
-        labels: this.monthArray,
+        // labels: this.monthArray,
+           labels:[this.nbAccepte="demande accepte",this.nbRefuse="demande refuse",this.nbAttente="demande en attente"],
         datasets: [
           {
-            label: '# of Skills',
+            label: 'Solde congé',
 
-            data:[2,5,5,6],
+            data:[0,1,2,3,4,5,6,7,8,9],
             backgroundColor: [
               '#86E3CE',
               '#7FACD6',
@@ -173,7 +179,9 @@ getAllDemande(){
   this.enAttente = this.allDemande.filter(item=>item.etat=='en_attente')
   this.nbAttente=this.enAttente.length
   this.dateRefuse=this.refuse.map(item=>item.date_debut.substring(6,7))
-  console.log("test test",this.dateRefuse);
+  // console.log("test test",this.dateRefuse);
+  console.log("hhh",this.nbRefuse);
+  
 
   this.dateAccepte=this.accepte.map(item=>item.date_debut.substring(6,7))
   this.dateAttente=this.enAttente.map(item=>item.date_debut.substring(6,7))

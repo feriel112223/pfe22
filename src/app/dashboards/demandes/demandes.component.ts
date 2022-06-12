@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder,  FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { DemandesService } from 'src/app/shared/services/demandes.service';
@@ -11,6 +11,12 @@ import { ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./demandes.component.css'],
 })
 export class DemandesComponent implements OnInit {
+
+
+  id= JSON.parse(localStorage.getItem("user")||'').id;
+  nom= JSON.parse(localStorage.getItem("user")||'').Nom;
+  prenom= JSON.parse(localStorage.getItem("user")||'').Prenom;
+  
   radioItems: any;
   congeTypes: any;
   model = { option: '' };
@@ -21,6 +27,7 @@ export class DemandesComponent implements OnInit {
   demandes: any;
   closeResult:any
   Demande_id :any
+  filterTerm!: string;
   formDemande: FormGroup;
   etat :any=['en attente']
   
@@ -54,6 +61,7 @@ export class DemandesComponent implements OnInit {
       description: [null],
      
     });
+    
 
     this.getAllDemande();
   }
@@ -98,13 +106,6 @@ export class DemandesComponent implements OnInit {
   postDemandeDetails()
    {
     {
-
-
-
-
-
-
-
      console.log(this.formDemande.value)
     this.demandesServ.postDemande(this.formDemande.value)
     .subscribe(res=>{

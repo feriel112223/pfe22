@@ -11,7 +11,12 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class AdmincongesComponent implements OnInit {
 listConge:any
+
+id= JSON.parse(localStorage.getItem("user")||'').id;
+nom= JSON.parse(localStorage.getItem("user")||'').Nom;
+prenom= JSON.parse(localStorage.getItem("user")||'').Prenom;
 demandes: any;
+filterTerm:any
   constructor(private demandesServ: DemandesService, private toastr: ToastrService) { 
     this.getAllDemande();
   }
@@ -54,5 +59,16 @@ this.demandesServ.accepterEtat(id).subscribe((res:any)=>{
       console.log(err);
       
     })
+  }
+  archiver(id:any){
+    this.demandesServ.archiverDemande(id).subscribe((res:any)=>{
+     console.log("ok");
+     
+    
+    },(err : any)=>{
+      console.log(err);
+      
+    })
       }
+
 }

@@ -8,14 +8,7 @@ export class DemandesService {
   demandes: any;
   path ="http://localhost:8000/api";
 
-  constructor(private http: HttpClient) {
-  }
-
-  /**
-   * test
-   */
- 
-
+  constructor(private http: HttpClient) {}
   postDemande(data: any) {
     return this.http.post<any>(this.path + "/conges", data);
   }
@@ -30,6 +23,9 @@ export class DemandesService {
   }
   refuserEtat( id: number) {
     return this.http.put<any>(this.path + "/conges/refuse/" + id ,"");
+  }
+  archiverDemande( id: number) {
+    return this.http.put<any>(this.path + "/conges/archive/" + id ,"");
   }
   deleteDemande(id: number) {
     return this.http.delete<any>(this.path + "/conges/"+ id);

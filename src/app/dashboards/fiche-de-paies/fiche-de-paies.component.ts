@@ -1,4 +1,6 @@
 import { Component, OnInit,VERSION } from '@angular/core';
+import { FicheService } from 'src/app/shared/services/fiche.service';
+
 
 
 @Component({
@@ -8,9 +10,12 @@ import { Component, OnInit,VERSION } from '@angular/core';
 })
 export class FicheDePaiesComponent implements OnInit {
   showForm=false;
+  fiche: any
    role= JSON.parse(localStorage.getItem("user")||'').role;
 
-  constructor() { }
+  constructor(private ficheServ: FicheService) {
+   
+   }
  
 
   ngOnInit(): void {
@@ -19,4 +24,18 @@ export class FicheDePaiesComponent implements OnInit {
     this.showForm= !this.showForm;
 
   }
+  // getAllfiche(){
+  //   console.log("hi")
+  //   this.ficheServ.getAllfiche().subscribe((res : any)=>{
+  //     this.fiche = res;
+  //     console.log(res);
+
+  //   },
+  //   (err : any)=>{
+  //     console.log(err);
+      
+  //   }
+  //   )
+  // }
 }
+
