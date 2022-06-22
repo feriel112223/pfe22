@@ -53,16 +53,16 @@
                         
                         <li class="user-profile header-notification" >
                             <a  (click)="toggleDropDown()" class="waves-effect waves-light">
-                                <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image">
+                                <!-- <img src="assets/images/avatar-4.jpg" class="img-radius" alt="User-Profile-Image"> -->
                                 <span>{{nom}} {{prenom}}</span>
                                 <i class="ti-angle-down"></i>
                             </a>
                             <ul class="show-notification profile-notification" [ngStyle]="{'display': dropDownProfil}" >
                                 
-                                <li class="waves-effect waves-light" >
-                                    <a routerLink="/login">
-                                        <i class="ti-layout-sidebar-left" (click)="logout()"></i> Déconnexion 
-                                    </a>
+                                <li class="waves-effect waves-light" (click)="logout()">
+                                    
+                                        <i class="ti-layout-sidebar-left" ></i> Déconnexion 
+                                    
                                 </li>
                             </ul>
                         </li>

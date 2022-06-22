@@ -42,14 +42,20 @@ export class LoginComponent implements OnInit {
       this.auth.saveToken(this.data)
       if(this.data.role=='EMPLOYE')
       this.router.navigate(['/home/dashboard'])
-      else if(this.data.role=='ADMIN')
-      this.router.navigate(['/home/admindash'])
+      if(this.data.role=='ADMIN'){
+        this.router.navigate(['/home/admindash'])
+      }
+      else if(this.data.role=='SUPERADMIN'){
+        this.router.navigate(['/home/admindash'])
+
+      }
 
       
 
       // console.log(res);
       
     }), (err:any) => {this.router.navigate(['/login'])
+    alert ("vérifier vos informations")
 
     console.log(err)}
     }

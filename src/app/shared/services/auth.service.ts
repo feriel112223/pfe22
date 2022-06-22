@@ -30,8 +30,12 @@ export class AuthService {
   }
   // sign out
   logout(){
+    localStorage.removeItem('user');
+   localStorage.clear();
     this.isLogin=false;
    localStorage.removeItem('user');
+   localStorage.clear();
+
    this.router.navigate(['/login']);
 
 

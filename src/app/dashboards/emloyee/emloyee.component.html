@@ -228,6 +228,7 @@
     </button>
     <button
       class="btn btn-primary btn-round waves-effect waves-light"
+      [disabled]="!formEmployee.valid"
       (click)="postEmployeeDetails()"
       *ngIf="showAdd"
       type="submit"

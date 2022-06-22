@@ -460,7 +460,44 @@ else{
 
 
 
+// display() {
+//   this.sheduleLineServ.getAllSheduleMaster().subscribe((res: any[]) => {
+//     this.shedule = res;
+//     let i = 0;
+//     res.forEach((elementShesule) => {
+//       elementShesule.ligneEmplois.forEach((elementLine) => {
+//         this.shadowShedule.push({
+//           ...elementLine,
+//           start: new Date(elementLine.heureDebut),
+//           cssClass: 'my-carre-class',
+//           end: new Date(elementLine.heureFin),
+//           title:
+//             'séance MAster-' +
+//             elementShesule.master +
+//             ' :' +
+//             elementLine.sousModule.nomSousModule +
+//             ' :' +
+//             this.datepipe.transform(
+//               new Date(elementLine.heureDebut),
+//               'h:mm'
+//             ) +
+//             '-' +
+//             this.datepipe.transform(new Date(elementLine.heureFin), 'h:mm'),
+//           color: colorss[i + 1],
+//           actions: this.actions,
+//           idLigneShedule: elementLine.id,
+//         });
+//       });
+//       i = i + 1;
+//     });
+//     console.log(res);
 
+//     if (res) this.sheduleAll = this.shadowShedule;
+
+//     this.refresh.next();
+//     this.displayCec();
+//   });
+// }
 
 
 

@@ -173,6 +173,7 @@ getAllDemande(){
     this.allDemande=res
   this.refuse = this.allDemande.filter(item=>item.etat=='refuse')
   this.nbRefuse=this.refuse.length
+
   
   this.accepte = this.allDemande.filter(item=>item.etat=='accepte')
   this.nbAccepte=this.accepte.length
@@ -180,7 +181,7 @@ getAllDemande(){
   this.nbAttente=this.enAttente.length
   this.dateRefuse=this.refuse.map(item=>item.date_debut.substring(6,7))
   // console.log("test test",this.dateRefuse);
-  console.log("hhh",this.nbRefuse);
+  console.log("hhh",this.dateRefuse);
   
 
   this.dateAccepte=this.accepte.map(item=>item.date_debut.substring(6,7))
@@ -258,5 +259,34 @@ this.event=res
     })
   }
  
-
+  findOcc(arr, key){
+    let arr2 = [];
+      
+    arr.forEach((x)=>{
+         
+      // Checking if there is any object in arr2
+      // which contains the key value
+       if(arr2.some((val)=>{ return val[key] == x[key] })){
+           
+         // If yes! then increase the occurrence by 1
+         arr2.forEach((k)=>{
+           if(k[key] === x[key]){ 
+             k["occurrence"]++
+           }
+        })
+           
+       }else{
+         // If not! Then create a new object initialize 
+         // it with the present iteration key's value and 
+         // set the occurrence to 1
+         let a = {}
+         a[key] = x[key]
+         a["occurrence"] = 1
+         arr2.push(a);
+       }
+    })
+      
+    return arr2
+  }
 }
+
